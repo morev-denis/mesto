@@ -1,3 +1,5 @@
 .header {
-
+  min-height: 74px;
+  box-sizing: border-box;
+  border-bottom: solid 1px #545454;
 }

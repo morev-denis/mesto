@@ -1,0 +1,8 @@
+.header__logo {
+  max-height: 33px;
+  transition: opacity ease .3s;
+}
+
+.header__logo:hover {
+  opacity: .6;
+}
