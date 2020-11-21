@@ -1,0 +1,12 @@
+/* определение внешней геометрии и положения блока header */
+.page__header {
+  width: calc((100vw - 320px) / (1280 - 320) * (880 - 320) + 320px);
+  margin: calc((100vw - 320px) / (1280 - 320) * (45 - 28) + 28px) auto calc((100vw - 320px) / (1280 - 320) * (40 - 42) + 42px);
+}
+
+@media screen and (min-width: 1280px) {
+  .page__header {
+    width: 880px;
+    margin: 45px auto 42px;
+  }
+}
