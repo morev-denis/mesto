@@ -21,11 +21,11 @@
             <img class="profile__avatar" src="./images/profile/__avatar/profile__avatar.jpg" alt="">
             <div class="profile__info">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <div class="profile__button profile__button_action_edit"></div>
+              <div class="button button_action_edit"></div>
               <p class="profile__job">Исследователь океана</p>
             </div>
           </div>
-            <div class="profile__button profile__button_action_add"></div>
+            <div class="button button_action_add"></div>
         </section>
 
         <section class="elements page__elements">
@@ -92,6 +92,19 @@
         <p class="footer__copyright">© 2020 Морев Денис</p>
       </footer>
 
+      <div class="popup popup_opened page__popup">
+        <div class="popup__container">
+          <div class="button button_action_close"></div>
+          <p class="popup__heading">Редактировать профиль</p>
+          <input class="popup__input popup__input_field_name" type="text" placeholder="Имя">
+          <input class="popup__input popup__input_field_job" type="text" placeholder="Профессия">
+          <button class="popup__button">Сохранить</button>
+        </div>
+      </div>
+
     </div>
+
+    <script src="./scripts/script.js"></script>
+
   </body>
 </html>

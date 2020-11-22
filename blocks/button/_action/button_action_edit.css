@@ -1,9 +1,9 @@
-.profile__button_action_edit {
+.button_action_edit {
   width: calc((100vw - 320px) / (1280 - 320) * (24 - 18) + 18px);
   height: calc((100vw - 320px) / (1280 - 320) * (24 - 18) + 18px);
   border: 1px solid #fff;
   border-radius: 1px;
-  background-image: url('../../../../images/profile/__button/_action/profile__button_action_edit.svg');
+  background-image: url('../../../images/button/__action/button_action_edit.svg');
   background-repeat: no-repeat;
   background-size: calc((100vw - 320px) / (1280 - 320) * (10 - 7.5) + 7.5px);
   background-position: center;
@@ -11,7 +11,7 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .profile__button_action_edit {
+  .button_action_edit {
     width: 24px;
     height: 24px;
     background-size: 10px;
