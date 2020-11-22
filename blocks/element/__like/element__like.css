@@ -1,0 +1,23 @@
+.element__like {
+  margin-left: 40px;
+  width: 21px;
+  height: 19px;
+  background-image: url('../../../images/elements/__element/elements__element_like_disabled.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: all ease .3s;
+  flex-shrink: 0;
+}
+
+.element__like:hover {
+  cursor: pointer;
+  opacity: .5;
+}
+
+.element__like:active {
+  cursor: pointer;
+  opacity: 1;
+  background-image: url('../../../images/elements/__element/elements__element_like_active.svg');
+}
+

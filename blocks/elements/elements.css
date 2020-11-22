@@ -1,0 +1,10 @@
+.elements {
+  box-sizing: border-box;
+  padding: 0 calc((100vw - 320px) / (1280 - 320) * (0 - 19) + 19px) 0 calc((100vw - 320px) / (1280 - 320) * (0 - 19) + 19px);
+}
+
+@media screen and (min-width: 1280px) {
+  .elements {
+    padding: 0;
+  }
+}
