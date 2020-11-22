@@ -1,0 +1,12 @@
+.profile__info {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(min-content, max-content));
+  row-gap: 7px;
+  column-gap: calc((100vw - 320px) / (1280 - 320) * (18 - 10) + 10px);;
+}
+
+@media screen and (min-width: 1280px) {
+  .profile__info {
+    olumn-gap: 18px;
+  }
+}

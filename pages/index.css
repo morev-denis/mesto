@@ -6,7 +6,18 @@
 
 @import url('../blocks/page/page.css');
 @import url('../blocks/page/header/page__header.css');
+@import url('../blocks/page/profile/page__profile.css');
 
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__link/header__link.css');
 @import url('../blocks/header/__logo/header__logo.css');
+
+@import url('../blocks/profile/profile.css');
+@import url('../blocks/profile/__container/profile__container.css');
+@import url('../blocks/profile/__avatar/profile__avatar.css');
+@import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/profile/__name/profile__name.css');
+@import url('../blocks/profile/__job/profile__job.css');
+@import url('../blocks/profile/__button/profile__button.css');
+@import url('../blocks/profile/__button/_action/profile__button_action_edit.css');
+@import url('../blocks/profile/__button/_action/profile__button_action_add.css');

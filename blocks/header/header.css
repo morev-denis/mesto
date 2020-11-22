@@ -3,3 +3,9 @@
   box-sizing: border-box;
   border-bottom: solid 1px #545454;
 }
+
+@media screen and (min-width: 1280px) {
+  .header {
+    min-height: 74px;
+  }
+}
