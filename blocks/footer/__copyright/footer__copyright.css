@@ -4,3 +4,10 @@
   line-height: calc((100vw - 320px) / (1280 - 320) * (22 - 17) + 17px);
   color: #545454;
 }
+
+@media screen and (min-width: 1280px) {
+  .footer__copyright {
+  font-size: 18px;
+  line-height: 22px;
+  }
+}
