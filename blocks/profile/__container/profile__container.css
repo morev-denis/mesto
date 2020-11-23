@@ -1,8 +1,8 @@
 .profile__container {
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(2, max-content);
-  gap: 30px;
+  grid-template-columns: min-content 1fr;
+  /* gap: 30px; */
 }
 
 @media screen and (max-width: 768px) {
