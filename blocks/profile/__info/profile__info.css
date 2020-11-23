@@ -1,8 +1,10 @@
 .profile__info {
+  padding: 0 30px 0;
   display: grid;
-  grid-template-columns: repeat(2, minmax(min-content, max-content));
+  /* max-width: 610px; */
+  grid-template-columns: min-content 1fr;
   row-gap: 7px;
-  column-gap: calc((100vw - 320px) / (1280 - 320) * (18 - 10) + 10px);;
+  column-gap: calc((100vw - 320px) / (1280 - 320) * (18 - 10) + 10px);
 }
 
 @media screen and (min-width: 1280px) {
