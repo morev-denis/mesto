@@ -3,6 +3,11 @@
   font-size: calc((100vw - 320px) / (1280 - 320) * (42 - 27) + 27px);
   line-height: calc((100vw - 320px) / (1280 - 320) * (48 - 33) + 33px);
   font-weight: 500;
+  max-width: 500px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media screen and (min-width: 1280px) {
