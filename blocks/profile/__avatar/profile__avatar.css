@@ -3,5 +3,7 @@
   height: 120px;
   object-fit: cover;
   border-radius: 50%;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
+  grid-area: profile__avatar;
+  justify-self: center;
 }
