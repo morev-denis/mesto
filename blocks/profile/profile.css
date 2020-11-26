@@ -5,7 +5,7 @@
   grid-template-rows: 1fr 1fr;
   grid-template-areas:
   "profile__avatar profile__name button_action_edit button_action_add"
-  "profile__avatar profile__job . button_action_add";
+  "profile__avatar profile__job profile__job button_action_add";
 
   box-sizing: border-box;
   padding: 0 calc((100vw - 320px) / (1280 - 320) * (0 - 19) + 19px) 0 calc((100vw - 320px) / (1280 - 320) * (0 - 19) + 19px);
@@ -23,7 +23,7 @@
     grid-template-rows: 1fr 1fr min-content;
     grid-template-areas:
     "profile__avatar profile__name button_action_edit"
-    "profile__avatar profile__job ."
+    "profile__avatar profile__job profile__job"
     "button_action_add button_action_add button_action_add";
   }
 }

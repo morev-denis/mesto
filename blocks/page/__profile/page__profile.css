@@ -1,12 +1,12 @@
 /* определение внешней геометрии и положения блока profile */
 .page__profile {
   width: calc((100vw - 320px) / (1280 - 320) * (880 - 320) + 320px);
-  margin: 0 auto calc((100vw - 320px) / (1280 - 320) * (50 - 36) + 36px);
+  margin: 0 auto calc((100vw - 320px) / (1280 - 320) * (51 - 36) + 36px);
 }
 
 @media screen and (min-width: 1280px) {
   .page__profile {
     width: 880px;
-    margin: 0 auto 50px;
+    margin: 0 auto 51px;
   }
 }

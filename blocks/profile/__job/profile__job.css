@@ -10,7 +10,7 @@
   text-overflow: ellipsis;
   max-width: calc(calc((100vw - 320px) / (1280 - 320) * (880 - 320) + 320px) - 120px - calc((100vw - 320px) / (1280 - 320) * (24 - 18) + 18px) - 30px - 150px - 2 * calc((100vw - 320px) / (1280 - 320) * (0 - 19) + 19px)); /* вычислить адаптивную максимальную ширину под имя (текущая_ширина_profile - ширина-аватара - текущая_ширина_кнопки_edit - зазор_между_edit_add - ширина_кнопки_add - 2 * значение_padding) */
   box-sizing: border-box;
-  padding: 0 18px 0 30px;
+  padding: 1px 18px 0 30px;
 }
 
 @media screen and (min-width: 1280px) {
@@ -32,5 +32,6 @@
   .profile__job {
     max-width: calc(calc((100vw - 320px) / (1280 - 320) * (880 - 320) + 320px) - 2 * calc((100vw - 320px) / (1280 - 320) * (0 - 19) + 19px)); /* вычислить адаптивную максимальную ширину под профессию (текущая_ширина_profile - текущая_ширина_кнопки_edit - зазор_между_edit_границей_profile - 2 * значение_padding) */
     justify-self: center;
+    padding: 0 20px 0 20px;
   }
 }

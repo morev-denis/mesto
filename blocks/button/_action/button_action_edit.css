@@ -9,7 +9,7 @@
   background-position: center;
   align-self: end;
   grid-area: button_action_edit;
-  margin-bottom: 7px;
+  margin-bottom: -1px;
 }
 
 @media screen and (min-width: 1280px) {
