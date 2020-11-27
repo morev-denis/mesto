@@ -1,0 +1,24 @@
+.popup__button_action_submit {
+  min-height: calc((100vw - 320px) / (1280 - 320) * (50 - 46) + 46px);
+  align-self: end;
+  cursor: pointer;
+  border-radius: 2px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  font-size: calc((100vw - 320px) / (1280 - 320) * (18 - 14) + 14px);
+  line-height: calc((100vw - 320px) / (1280 - 320) * (22 - 17) + 17px);
+  transition: opacity ease .3s;
+}
+
+.popup__button_action_submit:hover {
+  opacity: .8;
+}
+
+@media screen and (min-width: 1280px) {
+  .popup__button_action_submit {
+    min-height: 50px;
+    font-size: 18px;
+    line-height: 17px;
+  }
+}

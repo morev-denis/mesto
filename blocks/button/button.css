@@ -1,9 +1,18 @@
 .button {
   box-sizing: border-box;
   transition: opacity ease .3s;
+  background-color: #000;
 }
 
 .button:hover {
   cursor: pointer;
   opacity: .6;
+}
+
+.button:active {
+  outline: none;
+}
+
+.button:focus {
+  outline: none;
 }

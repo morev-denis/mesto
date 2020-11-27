@@ -1,9 +1,9 @@
-.button_action_add {
+.profile__button_action_add {
   width: 150px;
   height: 50px;
   border: 2px solid #fff;
   border-radius: 2px;
-  background-image: url('../../../images/button/__action/button_action_add.svg');
+  background-image: url('../../../../images/profile/__button/_action/profile__button_action_add.svg');
   background-repeat: no-repeat;
   background-size: calc((100vw - 320px) / (1280 - 320) * (22 - 16) + 16px);
   background-position: center;
@@ -12,13 +12,13 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .button_action_add {
+  .profile__button_action_add {
     background-size: 22px;
   }
 }
 
 @media screen and (max-width: 1024px) {
-  .button_action_add {
+  .profile__button_action_add {
     width: 100%;
     margin-top: 33px;
   }

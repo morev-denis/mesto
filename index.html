@@ -19,9 +19,9 @@
         <section class="profile page__profile">
           <img class="profile__avatar" src="./images/profile/__avatar/profile__avatar.jpg" alt="Аватар">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <div class="button button_action_edit"></div>
+          <button class="profile__button profile__button_action_edit button"></button>
           <p class="profile__job">Исследователь океана</p>
-          <div class="button button_action_add"></div>
+          <button class="profile__button profile__button_action_add button"></button>
         </section>
 
         <section class="elements page__elements">
@@ -31,7 +31,7 @@
                 <img class="element__img" src="./images/elements/__element/elements__element_kirill-pershin-1088404-unsplash.jpg" alt="Крепость в Карачаево-Черкессии">
                 <figcaption class="element__caption">
                   <h2 class="element__heading">Карачаево-Черкессия</h2>
-                  <div class="element__like"></div>
+                  <button class="element__like"></button>
                 </figcaption>
               </figure>
             </li>
@@ -40,7 +40,7 @@
                 <img class="element__img" src="./images/elements/__element/elements__element_kirill-pershin-1404681-unsplash.jpg" alt="Вершины Эльбруса">
                 <figcaption class="element__caption">
                   <h2 class="element__heading">Гора Эльбрус</h2>
-                  <div class="element__like"></div>
+                  <button class="element__like"></button>
                 </figcaption>
               </figure>
             </li>
@@ -49,7 +49,7 @@
                 <img class="element__img" src="./images/elements/__element/elements__element_kirill-pershin-1556355-unsplash.jpg" alt="Горы Домбая">
                 <figcaption class="element__caption">
                   <h2 class="element__heading">Домбай</h2>
-                  <div class="element__like"></div>
+                  <button class="element__like"></button>
                 </figcaption>
               </figure>
             </li>
@@ -58,7 +58,7 @@
                 <img class="element__img" src="./images/elements/__element/elements__element_fortress-4490460_1280.jpg" alt="Вид на крепость Пскова">
                 <figcaption class="element__caption">
                   <h2 class="element__heading">Псков</h2>
-                  <div class="element__like"></div>
+                  <button class="element__like"></button>
                 </figcaption>
               </figure>
             </li>
@@ -67,7 +67,7 @@
                 <img class="element__img" src="./images/elements/__element/elements__element_river-2615647_1280.jpg" alt="Вид на стрелку Ярославля">
                 <figcaption class="element__caption">
                   <h2 class="element__heading">Ярославль</h2>
-                  <div class="element__like"></div>
+                  <button class="element__like"></button>
                 </figcaption>
               </figure>
             </li>
@@ -76,7 +76,7 @@
                 <img class="element__img" src="./images/elements/__element/elements__element_rybinsk-887045_1280.jpg" alt="Вид на набережную Рыбинска">
                 <figcaption class="element__caption">
                   <h2 class="element__heading">Рыбинск</h2>
-                  <div class="element__like"></div>
+                  <button class="element__like"></button>
                 </figcaption>
               </figure>
             </li>
@@ -92,11 +92,11 @@
 
     <div class="popup">
       <form class="popup__container" name="form-popup">
-        <div class="button button_action_close"></div>
+        <button class="popup__button popup__button_action_close button" type="button"></button>
         <p class="popup__heading">Редактировать профиль</p>
         <input class="popup__input popup__input_field_name" type="text" placeholder="Имя" name="input-name-popup">
         <input class="popup__input popup__input_field_job" type="text" placeholder="О себе" name="input-jop-popup">
-        <button class="popup__button" type="submit">Сохранить</button>
+        <button class="popup__button popup__button_action_submit" type="submit">Сохранить</button>
       </form>
     </div>
 
