@@ -6,8 +6,11 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+  background-color: #fff;
   transition: all ease .3s;
   flex-shrink: 0;
+  border: none;
+  outline: none;
 }
 
 .element__like:hover {
@@ -19,5 +22,10 @@
   cursor: pointer;
   opacity: 1;
   background-image: url('../../../images/elements/__element/elements__element_like_active.svg');
+  outline: none;
+}
+
+.element__like:focus {
+  outline: none;
 }
 
