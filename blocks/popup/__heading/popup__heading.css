@@ -1,5 +1,5 @@
 .popup__heading {
-  margin: 0 0 calc((100vw - 320px) / (1280 - 320) * (34 - 61) + 61px);
+  margin: 0 0 calc((100vw - 320px) / (1280 - 320) * (33 - 61) + 61px);
   font-size: calc((100vw - 320px) / (1280 - 320) * (24 - 18) + 18px);
   line-height: calc((100vw - 320px) / (1280 - 320) * (29 - 22) + 22px);
   font-weight: 900;
@@ -8,7 +8,7 @@
 
 @media screen and (min-width: 1280px) {
   .popup__heading {
-    margin: 0 0 34px;
+    margin: 0 0 33px;
     font-size: 24px;
     line-height: 29px;
   }
