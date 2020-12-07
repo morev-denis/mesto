@@ -26,60 +26,6 @@
 
         <section class="elements page__elements">
           <ul class="elements__grid">
-            <li class="element">
-              <figure class="element__figure">
-                <img class="element__img" src="./images/elements/__element/elements__element_kirill-pershin-1088404-unsplash.jpg" alt="Крепость в Карачаево-Черкессии">
-                <figcaption class="element__caption">
-                  <h2 class="element__heading">Карачаево-Черкессия</h2>
-                  <button class="element__like" type="button"></button>
-                </figcaption>
-              </figure>
-            </li>
-            <li class="element">
-              <figure class="element__figure">
-                <img class="element__img" src="./images/elements/__element/elements__element_kirill-pershin-1404681-unsplash.jpg" alt="Вершины Эльбруса">
-                <figcaption class="element__caption">
-                  <h2 class="element__heading">Гора Эльбрус</h2>
-                  <button class="element__like" type="button"></button>
-                </figcaption>
-              </figure>
-            </li>
-            <li class="element">
-              <figure class="element__figure">
-                <img class="element__img" src="./images/elements/__element/elements__element_kirill-pershin-1556355-unsplash.jpg" alt="Горы Домбая">
-                <figcaption class="element__caption">
-                  <h2 class="element__heading">Домбай</h2>
-                  <button class="element__like" type="button"></button>
-                </figcaption>
-              </figure>
-            </li>
-            <li class="element">
-              <figure class="element__figure">
-                <img class="element__img" src="./images/elements/__element/elements__element_fortress-4490460_1280.jpg" alt="Вид на крепость Пскова">
-                <figcaption class="element__caption">
-                  <h2 class="element__heading">Псков</h2>
-                  <button class="element__like" type="button"></button>
-                </figcaption>
-              </figure>
-            </li>
-            <li class="element">
-              <figure class="element__figure">
-                <img class="element__img" src="./images/elements/__element/elements__element_river-2615647_1280.jpg" alt="Вид на стрелку Ярославля">
-                <figcaption class="element__caption">
-                  <h2 class="element__heading">Ярославль</h2>
-                  <button class="element__like" type="button"></button>
-                </figcaption>
-              </figure>
-            </li>
-            <li class="element">
-              <figure class="element__figure">
-                <img class="element__img" src="./images/elements/__element/elements__element_rybinsk-887045_1280.jpg" alt="Вид на набережную Рыбинска">
-                <figcaption class="element__caption">
-                  <h2 class="element__heading">Рыбинск</h2>
-                  <button class="element__like" type="button"></button>
-                </figcaption>
-              </figure>
-            </li>
           </ul>
         </section>
       </main>
@@ -99,6 +45,18 @@
         <button class="popup__button popup__button_action_submit" type="submit">Сохранить</button>
       </form>
     </div>
+
+    <template id="element">
+      <li class="element">
+        <figure class="element__figure">
+          <img class="element__img" src="" alt="">
+          <figcaption class="element__caption">
+            <h2 class="element__heading"></h2>
+            <div class="element__like"></div>
+          </figcaption>
+        </figure>
+      </li>
+    </template>
 
     <script src="./scripts/script.js"></script>
 

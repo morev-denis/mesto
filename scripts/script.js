@@ -35,3 +35,41 @@ function popupFormSubmitHandler(evt) {
 profileButtonEdit.addEventListener('click', openPopup); // Прикрепить обработчик к кнопке редактирования профиля
 popupButtonClose.addEventListener('click', closePopup); // Прикрепить обработчик к кнопке закрытия попап
 popupForm.addEventListener('submit', popupFormSubmitHandler); // Прикрепить обработчик к форме
+
+
+const initialCards = [
+  {
+    name: 'Карачаево-Черкессия',
+    link: './images/elements/__element/elements__element_kirill-pershin-1088404-unsplash.jpg'
+  },
+  {
+    name: 'Гора Эльбрус',
+    link: './images/elements/__element/elements__element_kirill-pershin-1404681-unsplash.jpg'
+  },
+  {
+    name: 'Домбай',
+    link: './images/elements/__element/elements__element_kirill-pershin-1556355-unsplash.jpg'
+  },
+  {
+    name: 'Псков',
+    link: './images/elements/__element/elements__element_fortress-4490460_1280.jpg'
+  },
+  {
+    name: 'Ярославль',
+    link: './images/elements/__element/elements__element_river-2615647_1280.jpg'
+  },
+  {
+    name: 'Рыбинск',
+    link: './images/elements/__element/elements__element_rybinsk-887045_1280.jpg'
+  }
+];
+
+const elementTemplate = document.querySelector('#element').content;
+const elementsGrid = document.querySelector('.elements__grid');
+
+initialCards.forEach(function(item) {
+  const element = elementTemplate.cloneNode(true);
+  element.querySelector('.element__img').src = item.link;
+  element.querySelector('.element__heading').textContent = item.name;
+  elementsGrid.append(element);
+});
