@@ -1,0 +1,13 @@
+.popup-image__heading {
+  margin: 0;
+  font-size: 12px;
+  line-height: 15px;
+  color: #fff;
+  font-weight: normal;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+}

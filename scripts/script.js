@@ -16,6 +16,8 @@ const popupAddCardButtonClose = popupAddCard.querySelector('.popup-add-card__but
 const popupAddCardFormName = popupAddCard.querySelector('.popup-add-card__input_field_name');
 const popupAddCardFormLink = popupAddCard.querySelector('.popup-add-card__input_field_link');
 
+const popupImage = document.querySelector('.popup-image');
+
 const elementTemplate = document.querySelector('#element').content; // Шаблон карточки
 const elementsGrid = document.querySelector('.elements__grid'); // Список для вставки карточек
 
@@ -87,6 +89,25 @@ function popupAddCardFormSubmitHandler(evt) {
   evt.preventDefault(); // Отменить стандартную отправку формы
   element.querySelector('.element__img').src = popupAddCardFormLink.value;
   element.querySelector('.element__heading').textContent = popupAddCardFormName.value;
+  element.querySelector('.element__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('element__like_active');
+  });
+  element.querySelector('.element__button').addEventListener('click', function (evt) {
+    evt.target.closest('.element').remove();
+  });
+
+  element.querySelector('.element__img').addEventListener('click', function (evt) {
+    popupImage.querySelector('.popup-image__img').src = evt.target.src;
+    popupImage.querySelector('.popup-image__heading').textContent = evt.target.nextElementSibling.querySelector('.element__heading').textContent;
+    popupImage.classList.add('popup-image_opened');
+    document.body.style.overflowY = 'hidden'; // Запретить вертикальный скролл
+  });
+
+  popupImage.querySelector('.popup-image__button_action_close').addEventListener('click', function (evt) {
+    popupImage.classList.remove('popup-image_opened');
+    document.body.style.overflowY = 'auto'; // Разрешить вертикалный скролл
+  });
+
   elementsGrid.prepend(element);
   closePopupAddCard(); // Закрыть попап
   popupAddCardFormLink.value = ''; // Очистить поле ввода Ссылка на картинку
@@ -99,9 +120,27 @@ initialCards.forEach(function(item) {
   const element = elementTemplate.cloneNode(true);
   element.querySelector('.element__img').src = item.link;
   element.querySelector('.element__heading').textContent = item.name;
+  element.querySelector('.element__like').addEventListener('click', function (evt) {
+    evt.target.classList.toggle('element__like_active');
+  });
+  element.querySelector('.element__button').addEventListener('click', function (evt) {
+    evt.target.closest('.element').remove();
+  });
+
+  element.querySelector('.element__img').addEventListener('click', function (evt) {
+    popupImage.querySelector('.popup-image__img').src = evt.target.src;
+    popupImage.querySelector('.popup-image__heading').textContent = evt.target.nextElementSibling.querySelector('.element__heading').textContent;
+    popupImage.classList.add('popup-image_opened');
+    document.body.style.overflowY = 'hidden'; // Запретить вертикальный скролл
+  });
+
+  popupImage.querySelector('.popup-image__button_action_close').addEventListener('click', function (evt) {
+    popupImage.classList.remove('popup-image_opened');
+    document.body.style.overflowY = 'auto'; // Разрешить вертикалный скролл
+  });
+
   elementsGrid.append(element);
 });
-
 
 profileButtonEdit.addEventListener('click', openPopup); // Прикрепить обработчик к кнопке редактирования профиля
 popupButtonClose.addEventListener('click', closePopup); // Прикрепить обработчик к кнопке закрытия попап редактирования профиля

@@ -1,0 +1,19 @@
+.element__button {
+  position: absolute;
+  top: 18px;
+  right: 15px;
+  width: 18px;
+  height: 19.3px;
+  background-image: url('../../../images/elements/__element/elements__element_button.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  transition: all ease .3s;
+  border: none;
+  background-color: transparent;
+}
+
+.element__button:hover {
+  cursor: pointer;
+  opacity: .6;
+}
