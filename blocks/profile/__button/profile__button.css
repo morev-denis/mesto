@@ -1,3 +1,18 @@
 .profile__button {
+  box-sizing: border-box;
+  transition: opacity ease .3s;
+  background-color: #000;
+}
 
+.profile__button:hover {
+  cursor: pointer;
+  opacity: .6;
+}
+
+.profile__button:active {
+  outline: none;
+}
+
+.profile__button:focus {
+  outline: none;
 }

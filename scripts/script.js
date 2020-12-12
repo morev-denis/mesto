@@ -5,15 +5,15 @@ const profileButtonEdit = document.querySelector('.profile__button_action_edit')
 const profileButtonAdd = document.querySelector('.profile__button_action_add');
 
 const popup = document.querySelector('.popup_feat_profile-edit');
-const popupForm = popup.querySelector('.popup__container_entity_form');
+const popupForm = popup.querySelector('.popup__container_feat_profile-edit');
 const popupButtonClose = popup.querySelector('.popup__button_action_close');
 const popupFormName = popup.querySelector('.popup__input_field_name');
 const popupFormJob = popup.querySelector('.popup__input_field_job');
 
 const popupAddCard = document.querySelector('.popup_feat_card-add');
-const popupAddCardForm = popupAddCard.querySelector('.popup__container_entity_form');
+const popupAddCardForm = popupAddCard.querySelector('.popup__container_feat_card-add');
 const popupAddCardButtonClose = popupAddCard.querySelector('.popup__button_action_close');
-const popupAddCardFormName = popupAddCard.querySelector('.popup__input_field_name');
+const popupAddCardFormName = popupAddCard.querySelector('.popup__input_field_place');
 const popupAddCardFormLink = popupAddCard.querySelector('.popup__input_field_link');
 
 const popupImage = document.querySelector('.popup_feat_image-fullsize');
@@ -97,8 +97,8 @@ function popupAddCardFormSubmitHandler(evt) {
   });
 
   element.querySelector('.element__image').addEventListener('click', function (evt) {
-    popupImage.querySelector('.popup__image').src = evt.target.src;
-    popupImage.querySelector('.popup__heading_entity_image').textContent = evt.target.nextElementSibling.querySelector('.element__heading').textContent;
+    popupImage.querySelector('.popup__image-fullsize').src = evt.target.src;
+    popupImage.querySelector('.popup__heading_feat_image-fullsize').textContent = evt.target.nextElementSibling.querySelector('.element__heading').textContent;
     popupImage.classList.add('popup_opened');
     document.body.style.overflowY = 'hidden'; // Запретить вертикальный скролл
   });
@@ -127,11 +127,12 @@ initialCards.forEach(function(item) {
   });
 
   element.querySelector('.element__image').addEventListener('click', function (evt) {
-    popupImage.querySelector('.popup__image').src = evt.target.src;
-    popupImage.querySelector('.popup__heading_entity_image').textContent = evt.target.nextElementSibling.querySelector('.element__heading').textContent;
+    popupImage.querySelector('.popup__image-fullsize').src = evt.target.src;
+    popupImage.querySelector('.popup__heading_feat_image-fullsize').textContent = evt.target.nextElementSibling.querySelector('.element__heading').textContent;
     popupImage.classList.add('popup_opened');
     document.body.style.overflowY = 'hidden'; // Запретить вертикальный скролл
   });
+
 
   popupImage.querySelector('.popup__button_action_close').addEventListener('click', function (evt) {
     popupImage.classList.remove('popup_opened');

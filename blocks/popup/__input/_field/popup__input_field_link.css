@@ -1,2 +1,12 @@
 .popup__input_field_link {
+  margin: 0 0 calc((100vw - 320px) / (1280 - 320) * (48 - 36) + 36px);
+  font-size: calc((100vw - 320px) / (1280 - 320) * (14 - 12) + 12px);
 }
+
+@media screen and (min-width: 1280px) {
+  .popup__input_field_link {
+    margin: 0 0 48px;
+    font-size: 14px;
+  }
+}
+

@@ -1,4 +1,4 @@
-.popup__container_entity_form {
+.popup__container_feat_profile-edit {
   padding: calc((100vw - 320px) / (1280 - 320) * (34 - 25) + 25px) calc((100vw - 320px) / (1280 - 320) * (36 - 22) + 22px) calc((100vw - 320px) / (1280 - 320) * (37 - 25) + 25px);
   width: calc((100vw - 320px) / (1280 - 320) * (430 - 282) + 282px);
   display: grid;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .popup__container_entity_form {
+  .popup__container_feat_profile-edit {
     padding: 34px 36px 37px;
     width: 430px;
   }

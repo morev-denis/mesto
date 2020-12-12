@@ -1,10 +1,10 @@
-.popup__button_position_form {
+.popup__button_position_profile-edit-close {
   top: calc(-1 * calc((100vw - 320px) / (1280 - 320) * (32 - 20) + 20px) + calc((100vw - 320px) / (1280 - 320) * (-4 + 22) - 22px));
   left: calc((100vw - 320px) / (1280 - 320) * (434 - 254) + 254px);
 }
 
 @media screen and (min-width: 1280px) {
-  .popup__button_position_form {
+  .popup__button_position_profile-edit-close {
     top: calc(-32px - 4px);
     left: 434px;
   }

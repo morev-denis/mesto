@@ -19,9 +19,9 @@
         <section class="profile page__profile">
           <img class="profile__avatar" src="./images/profile/__avatar/profile__avatar.jpg" alt="Аватар">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__button profile__button_action_edit button" type="button"></button>
+          <button class="profile__button profile__button_action_edit" type="button"></button>
           <p class="profile__job">Исследователь океана</p>
-          <button class="profile__button profile__button_action_add button" type="button"></button>
+          <button class="profile__button profile__button_action_add" type="button"></button>
         </section>
 
         <section class="elements page__elements">
@@ -36,34 +36,38 @@
 
     </div>
 
+    <!-- Попап с редактированием профиля -->
     <div class="popup popup_feat_profile-edit">
-      <form class="popup__container popup__container_entity_form" name="form-popup">
-        <button class="popup__button popup__button_action_close popup__button_position_form button" type="button"></button>
-        <h2 class="popup__heading popup__heading_entity_form">Редактировать профиль</h2>
+      <form class="popup__container popup__container_feat_profile-edit" name="form-popup">
+        <button class="popup__button popup__button_action_close popup__button_position_profile-edit-close" type="button"></button>
+        <h2 class="popup__heading popup__heading_feat_profile-edit">Редактировать профиль</h2>
         <input class="popup__input popup__input_field_name" type="text" placeholder="Имя" name="input-name-popup">
         <input class="popup__input popup__input_field_job" type="text" placeholder="О себе" name="input-job-popup">
         <button class="popup__button popup__button_action_submit" type="submit">Сохранить</button>
       </form>
     </div>
 
+    <!-- Попап с добавлением нового места -->
     <div class="popup popup_feat_card-add">
-      <form class="popup__container popup__container_entity_form" name="form-popup-add-card">
-        <button class="popup__button popup__button_action_close popup__button_position_form button" type="button"></button>
-        <h2 class="popup__heading popup__heading_entity_form">Новое место</h2>
-        <input class="popup__input popup__input_field_name" type="text" placeholder="Название" name="input-name-popup-add-card">
+      <form class="popup__container popup__container_feat_card-add" name="form-popup-add-card">
+        <button class="popup__button popup__button_action_close popup__button_position_card-add-close" type="button"></button>
+        <h2 class="popup__heading popup__heading_feat_card-add">Новое место</h2>
+        <input class="popup__input popup__input_field_place" type="text" placeholder="Название" name="input-name-popup-add-card">
         <input class="popup__input popup__input_field_link" type="text" placeholder="Ссылка на картинку" name="input-link-popup-add-card">
         <button class="popup__button popup__button_action_submit" type="submit">Создать</button>
       </form>
     </div>
 
+    <!-- Попап с полноразмерной картинкой -->
     <div class="popup popup_feat_image-fullsize">
-      <div class="popup__container popup__container_entity_image">
-        <img class="popup__image" src="#" alt="">
-        <button class="popup__button popup__button_action_close popup__button_position_image button" type="button"></button>
-        <h2 class="popup__heading popup__heading_entity_image"></h2>
+      <div class="popup__container popup__container_feat_image-fullsize">
+        <img class="popup__image-fullsize" src="#" alt="">
+        <button class="popup__button popup__button_action_close popup__button_position_image-fullsize-close" type="button"></button>
+        <h2 class="popup__heading popup__heading_feat_image-fullsize">Название</h2>
       </div>
     </div>
 
+    <!-- Шаблон карточки нового места -->
     <template id="element">
       <li class="element">
         <figure class="element__figure">
