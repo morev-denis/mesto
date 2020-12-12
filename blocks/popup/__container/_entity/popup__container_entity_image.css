@@ -1,5 +1,4 @@
-.popup-image__container {
-  position: fixed;
+.popup__container_entity_image {
   display: flex;
   justify-content: center;
   align-items: center;
