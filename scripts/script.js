@@ -25,27 +25,33 @@ const elementsGrid = document.querySelector('.elements__grid'); // Список 
 const initialCards = [
   {
     name: 'Карачаево-Черкессия',
-    link: './images/elements/__element/elements__element_kirill-pershin-1088404-unsplash.jpg'
+    link: './images/elements/__element/elements__element_kirill-pershin-1088404-unsplash.jpg',
+    alt: 'Крепость в Карачаево-Черкессии'
   },
   {
     name: 'Гора Эльбрус',
-    link: './images/elements/__element/elements__element_kirill-pershin-1404681-unsplash.jpg'
+    link: './images/elements/__element/elements__element_kirill-pershin-1404681-unsplash.jpg',
+    alt: 'Вершины Эльбруса'
   },
   {
     name: 'Домбай',
-    link: './images/elements/__element/elements__element_kirill-pershin-1556355-unsplash.jpg'
+    link: './images/elements/__element/elements__element_kirill-pershin-1556355-unsplash.jpg',
+    alt: 'Горы Домбая'
   },
   {
     name: 'Псков',
-    link: './images/elements/__element/elements__element_fortress-4490460_1280.jpg'
+    link: './images/elements/__element/elements__element_fortress-4490460_1280.jpg',
+    alt: 'Вид на крепость Пскова'
   },
   {
     name: 'Ярославль',
-    link: './images/elements/__element/elements__element_river-2615647_1280.jpg'
+    link: './images/elements/__element/elements__element_river-2615647_1280.jpg',
+    alt: 'Вид на стрелку Ярославля'
   },
   {
     name: 'Рыбинск',
-    link: './images/elements/__element/elements__element_rybinsk-887045_1280.jpg'
+    link: './images/elements/__element/elements__element_rybinsk-887045_1280.jpg',
+    alt: 'Вид на набережную Рыбинска'
   }
 ];
 
@@ -88,6 +94,7 @@ function popupAddCardFormSubmitHandler(evt) {
   const element = elementTemplate.cloneNode(true);
   evt.preventDefault(); // Отменить стандартную отправку формы
   element.querySelector('.element__image').src = popupAddCardFormLink.value;
+  element.querySelector('.element__image').alt = popupAddCardFormName.value;
   element.querySelector('.element__heading').textContent = popupAddCardFormName.value;
   element.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
@@ -118,6 +125,7 @@ function popupAddCardFormSubmitHandler(evt) {
 initialCards.forEach(function(item) {
   const element = elementTemplate.cloneNode(true);
   element.querySelector('.element__image').src = item.link;
+  element.querySelector('.element__image').alt = item.alt;
   element.querySelector('.element__heading').textContent = item.name;
   element.querySelector('.element__like').addEventListener('click', function (evt) {
     evt.target.classList.toggle('element__like_active');
