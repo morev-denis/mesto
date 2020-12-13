@@ -41,8 +41,8 @@
       <form class="popup__container popup__container_feat_profile-edit" name="form-popup">
         <button class="popup__button popup__button_action_close popup__button_position_profile-edit-close" type="button"></button>
         <h2 class="popup__heading popup__heading_feat_profile-edit">Редактировать профиль</h2>
-        <input class="popup__input popup__input_field_name" type="text" placeholder="Имя" name="input-name-popup">
-        <input class="popup__input popup__input_field_job" type="text" placeholder="О себе" name="input-job-popup">
+        <input class="popup__input popup__input_field_name" type="text" placeholder="Имя" name="input-name-popup" required>
+        <input class="popup__input popup__input_field_job" type="text" placeholder="О себе" name="input-job-popup" required>
         <button class="popup__button popup__button_action_submit" type="submit">Сохранить</button>
       </form>
     </div>
@@ -52,8 +52,8 @@
       <form class="popup__container popup__container_feat_card-add" name="form-popup-add-card">
         <button class="popup__button popup__button_action_close popup__button_position_card-add-close" type="button"></button>
         <h2 class="popup__heading popup__heading_feat_card-add">Новое место</h2>
-        <input class="popup__input popup__input_field_place" type="text" placeholder="Название" name="input-name-popup-add-card">
-        <input class="popup__input popup__input_field_link" type="text" placeholder="Ссылка на картинку" name="input-link-popup-add-card">
+        <input class="popup__input popup__input_field_place" type="text" placeholder="Название" name="input-name-popup-add-card" required>
+        <input class="popup__input popup__input_field_link" type="url" placeholder="Ссылка на картинку" name="input-link-popup-add-card" required>
         <button class="popup__button popup__button_action_submit" type="submit">Создать</button>
       </form>
     </div>
@@ -74,13 +74,14 @@
           <img class="element__image" src="#" alt="Alt">
           <figcaption class="element__caption">
             <h2 class="element__heading"></h2>
-            <div class="element__like"></div>
+            <button class="element__like" type="button"></button>
           </figcaption>
         </figure>
-        <button class="element__button" type="button"></button>
+        <button class="element__delete" type="button"></button>
       </li>
     </template>
 
+    <script src="./scripts/initial-cards.js"></script>
     <script src="./scripts/script.js"></script>
 
   </body>

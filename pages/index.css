@@ -3,6 +3,7 @@
 @import url('../fonts/fonts.css');
 
 @import url('../blocks/root/root.css');
+@import url('../blocks/root/_scroll/root_scroll_disable.css');
 
 @import url('../blocks/page/page.css');
 @import url('../blocks/page/__header/page__header.css');
@@ -33,7 +34,7 @@
 @import url('../blocks/element/__heading/element__heading.css');
 @import url('../blocks/element/__like/element__like.css');
 @import url('../blocks/element/__like/_active/element__like_active.css');
-@import url('../blocks/element/__button/element__button.css');
+@import url('../blocks/element/__delete/element__delete.css');
 
 @import url('../blocks/footer/footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');
