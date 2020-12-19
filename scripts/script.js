@@ -80,6 +80,15 @@ function handleCardAddClose() {
   enableScrollY();
 }
 
+// Функция открытия попап с полноразмерной картинкой
+function handleImageFullsizeOpen(link, name) {
+  popupImageFullsizeImg.src = link;
+  popupImageFullsizeImg.alt = name;
+  popupImageFullsizeHeading.textContent = name;
+  showPopup(popupImageFullsize);
+  disableScrollY();
+}
+
 // Функция закрытия попап с полноразмерной картинкой
 function handleImageFullsizeClose() {
   hidePopup(popupImageFullsize);
@@ -101,11 +110,7 @@ function createCard(link, name) {
   });
 
   elementImage.addEventListener('click', function () {
-    popupImageFullsizeImg.src = link;
-    popupImageFullsizeImg.alt = name;
-    popupImageFullsizeHeading.textContent = name;
-    showPopup(popupImageFullsize);
-    disableScrollY();
+    handleImageFullsizeOpen(link, name);
   });
 
   return element;
