@@ -43,17 +43,29 @@ function handlePopupCloseByEscape(targetPopup, evt) {
   }
 }
 
+// Функция закрытия попап по клику на оверлей
+function handlePopupCloseByClickOverlay(targetPopup, evt) {
+  if (evt.target.matches('.popup') || evt.target.matches('.popup__button_action_close')) {
+    hidePopup(targetPopup);
+  }
+}
+
 // Функция отображения попап
 function showPopup(targetPopup) {
   targetPopup.classList.add('popup_opened');
+  disableScrollY();
   root.addEventListener('keydown', function (evt) {
     handlePopupCloseByEscape(targetPopup, evt);
+  });
+  root.addEventListener('click', function (evt) {
+    handlePopupCloseByClickOverlay(targetPopup, evt);
   });
 }
 
 // Функция скрытия попап
 function hidePopup(targetPopup) {
   targetPopup.classList.remove('popup_opened');
+  enableScrollY();
 }
 
 // Функция открытия попап редактирования профиля
@@ -61,13 +73,11 @@ function handleProfileEditOpen() {
   showPopup(popupProfileEdit);
   popupProfileEditFormName.value = profileName.textContent;
   popupProfileEditFormJob.value = profileJob.textContent;
-  disableScrollY();
 }
 
 // Функция закрытия попап редактирования профиля
 function handleProfileEditClose() {
   popupProfileEdit.classList.remove('popup_opened');
-  enableScrollY();
 }
 
 // Функция изменения Имени и О себе через попап
@@ -81,13 +91,11 @@ function handleProfileFormSubmit(evt) {
 // Функция открытия попап добавления нового места
 function handelCardAddOpen() {
   showPopup(popupCardAdd);
-  disableScrollY();
 }
 
 // Функция закрытия попап добавления нового места
 function handleCardAddClose() {
   hidePopup(popupCardAdd);
-  enableScrollY();
 }
 
 // Функция открытия попап с полноразмерной картинкой
@@ -96,13 +104,11 @@ function handleImageFullsizeOpen(link, name) {
   popupImageFullsizeImg.alt = name;
   popupImageFullsizeHeading.textContent = name;
   showPopup(popupImageFullsize);
-  disableScrollY();
 }
 
 // Функция закрытия попап с полноразмерной картинкой
 function handleImageFullsizeClose() {
   hidePopup(popupImageFullsize);
-  enableScrollY();
 }
 
 // Функция формирования содержимого карточки
