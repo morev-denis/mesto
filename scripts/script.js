@@ -36,9 +36,19 @@ function enableScrollY() {
   root.classList.remove('root_scroll_disable');
 }
 
+// Функция закрытия попап по кнопке Escape
+function handlePopupCloseByEscape(targetPopup, evt) {
+  if (evt.key === 'Escape') {
+    hidePopup(targetPopup);
+  }
+}
+
 // Функция отображения попап
 function showPopup(targetPopup) {
   targetPopup.classList.add('popup_opened');
+  root.addEventListener('keydown', function (evt) {
+    handlePopupCloseByEscape(targetPopup, evt);
+  });
 }
 
 // Функция скрытия попап
