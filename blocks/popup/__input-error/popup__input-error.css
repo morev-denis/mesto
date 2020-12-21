@@ -1,0 +1,17 @@
+.popup__input-error {
+  display: none;
+  position: absolute;
+  color: red;
+  font-size: calc((100vw - 320px) / (1280 - 320) * (12 - 8) + 8px);
+  line-height: calc((100vw - 320px) / (1280 - 320) * (15 - 9) + 9px);
+  top: 40px;
+  left: 0;
+  z-index: 10;
+}
+
+@media screen and (min-width: 1280px) {
+  .popup__input-error {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}

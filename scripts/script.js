@@ -45,7 +45,7 @@ function handlePopupCloseByEscape(targetPopup, evt) {
 
 // Функция закрытия попап по клику на оверлей
 function handlePopupCloseByClickOverlay(targetPopup, evt) {
-  if (evt.target.matches('.popup') || evt.target.matches('.popup__button_action_close')) {
+  if (evt.target.matches('.popup')) {
     hidePopup(targetPopup);
   }
 }
@@ -77,7 +77,7 @@ function handleProfileEditOpen() {
 
 // Функция закрытия попап редактирования профиля
 function handleProfileEditClose() {
-  popupProfileEdit.classList.remove('popup_opened');
+  hidePopup(popupProfileEdit);
 }
 
 // Функция изменения Имени и О себе через попап
@@ -91,6 +91,7 @@ function handleProfileFormSubmit(evt) {
 // Функция открытия попап добавления нового места
 function handelCardAddOpen() {
   showPopup(popupCardAdd);
+  popupCardAddForm.reset();
 }
 
 // Функция закрытия попап добавления нового места
@@ -142,13 +143,15 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault(); // Отменить стандартную отправку формы
   addCard(createCard(popupCardAddFormLink.value, popupCardAddFormName.value));
   handleCardAddClose(); // Закрыть попап
-  popupCardAddForm.reset(); // Очистить поля ввода
 }
 
 // Вывод карточек из массива при загрузке
 initialCards.forEach(function(item) {
   addCard(createCard(item.link, item.name));
 });
+
+popupProfileEditFormName.value = profileName.textContent;
+popupProfileEditFormJob.value = profileJob.textContent;
 
 profileButtonEdit.addEventListener('click', handleProfileEditOpen); // Прикрепить обработчик к кнопке редактирования профиля
 profileButtonAdd.addEventListener('click', handelCardAddOpen); // Прикрепить обработчик к кнопке добавления нового места
