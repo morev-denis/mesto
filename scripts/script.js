@@ -37,14 +37,14 @@ function enableScrollY() {
 }
 
 // Функция закрытия попап по кнопке Escape
-function handlePopupCloseByEscape(targetPopup, evt) {
+function closePopupByEscapeHandler(targetPopup, evt) {
   if (evt.key === 'Escape') {
     hidePopup(targetPopup);
   }
 }
 
 // Функция закрытия попап по клику на оверлей
-function handlePopupCloseByClickOverlay(targetPopup, evt) {
+function closePopupByClickOverlayHandler(targetPopup, evt) {
   if (evt.target.matches('.popup')) {
     hidePopup(targetPopup);
   }
@@ -55,10 +55,10 @@ function showPopup(targetPopup) {
   targetPopup.classList.add('popup_opened');
   disableScrollY();
   root.addEventListener('keydown', function (evt) {
-    handlePopupCloseByEscape(targetPopup, evt);
+    closePopupByEscapeHandler(targetPopup, evt);
   });
   root.addEventListener('click', function (evt) {
-    handlePopupCloseByClickOverlay(targetPopup, evt);
+    closePopupByClickOverlayHandler(targetPopup, evt);
   });
 }
 
@@ -69,38 +69,50 @@ function hidePopup(targetPopup) {
 }
 
 // Функция открытия попап редактирования профиля
-function handleProfileEditOpen() {
+function openProfileEditHandler() {
+  const formElement = document.querySelector('.popup__container_feat_profile-edit');
+  const inputElementName = formElement.querySelector('.popup__input_field_name');
+  const inputElementJob = formElement.querySelector('.popup__input_field_job');
+  hideInputError(formElement, inputElementName, validationConfig); // Сбросить ошибки валидации в поле Имя
+  hideInputError(formElement, inputElementJob, validationConfig); // Сбросить ошибки валидации в поле О себе
   showPopup(popupProfileEdit);
   popupProfileEditFormName.value = profileName.textContent;
   popupProfileEditFormJob.value = profileJob.textContent;
 }
 
 // Функция закрытия попап редактирования профиля
-function handleProfileEditClose() {
+function closeProfileEditHandler() {
   hidePopup(popupProfileEdit);
 }
 
 // Функция изменения Имени и О себе через попап
-function handleProfileFormSubmit(evt) {
+function submitProfileEditHandler(evt) {
   evt.preventDefault(); // Отменить стандартную отправку формы
   profileName.textContent = popupProfileEditFormName.value; // Присвоить Имени на HTML странице Имя из формы
   profileJob.textContent = popupProfileEditFormJob.value;  // Присвоить О себе на HTML странице О себе из формы
-  handleProfileEditClose(); // Закрыть попап
+  closeProfileEditHandler(); // Закрыть попап
 }
 
 // Функция открытия попап добавления нового места
-function handelCardAddOpen() {
+function openCardAddHandler () {
+  const formElement = document.querySelector('.popup__container_feat_card-add');
+  const inputElementPlace = formElement.querySelector('.popup__input_field_place');
+  const inputElementLink = formElement.querySelector('.popup__input_field_link');
+  const buttonElement = formElement.querySelector('.popup__button_action_submit');
+  buttonElement.classList.add(validationConfig.inactiveButtonClass); // Заблокировать кнопку сохранения
+  hideInputError(formElement, inputElementPlace, validationConfig); // Сбросить ошибки валидации в поле Имя
+  hideInputError(formElement, inputElementLink, validationConfig); // Сбросить ошибки валидации в поле Ссылка
   showPopup(popupCardAdd);
   popupCardAddForm.reset();
 }
 
 // Функция закрытия попап добавления нового места
-function handleCardAddClose() {
+function closeAddCardPopupHandler () {
   hidePopup(popupCardAdd);
 }
 
 // Функция открытия попап с полноразмерной картинкой
-function handleImageFullsizeOpen(link, name) {
+function opneImageFullsizeHandler(link, name) {
   popupImageFullsizeImg.src = link;
   popupImageFullsizeImg.alt = name;
   popupImageFullsizeHeading.textContent = name;
@@ -108,7 +120,7 @@ function handleImageFullsizeOpen(link, name) {
 }
 
 // Функция закрытия попап с полноразмерной картинкой
-function handleImageFullsizeClose() {
+function openImageFullsizeHandler() {
   hidePopup(popupImageFullsize);
 }
 
@@ -127,7 +139,7 @@ function createCard(link, name) {
   });
 
   elementImage.addEventListener('click', function () {
-    handleImageFullsizeOpen(link, name);
+    opneImageFullsizeHandler(link, name);
   });
 
   return element;
@@ -139,10 +151,10 @@ function addCard(element) {
 }
 
 // Функция добавления нового места
-function handleCardFormSubmit(evt) {
+function submitCardAddHandler(evt) {
   evt.preventDefault(); // Отменить стандартную отправку формы
   addCard(createCard(popupCardAddFormLink.value, popupCardAddFormName.value));
-  handleCardAddClose(); // Закрыть попап
+  closeAddCardPopupHandler (); // Закрыть попап
 }
 
 // Вывод карточек из массива при загрузке
@@ -150,16 +162,13 @@ initialCards.forEach(function(item) {
   addCard(createCard(item.link, item.name));
 });
 
-popupProfileEditFormName.value = profileName.textContent;
-popupProfileEditFormJob.value = profileJob.textContent;
+profileButtonEdit.addEventListener('click', openProfileEditHandler); // Прикрепить обработчик к кнопке редактирования профиля
+profileButtonAdd.addEventListener('click', openCardAddHandler ); // Прикрепить обработчик к кнопке добавления нового места
 
-profileButtonEdit.addEventListener('click', handleProfileEditOpen); // Прикрепить обработчик к кнопке редактирования профиля
-profileButtonAdd.addEventListener('click', handelCardAddOpen); // Прикрепить обработчик к кнопке добавления нового места
+popupProfileEditButtonClose.addEventListener('click', closeProfileEditHandler); // Прикрепить обработчик к кнопке закрытия попап редактирования профиля
+popupProfileEditForm.addEventListener('submit', submitProfileEditHandler); // Прикрепить обработчик к форме редактирования профиля
 
-popupProfileEditButtonClose.addEventListener('click', handleProfileEditClose); // Прикрепить обработчик к кнопке закрытия попап редактирования профиля
-popupProfileEditForm.addEventListener('submit', handleProfileFormSubmit); // Прикрепить обработчик к форме редактирования профиля
+popupCardAddButtonClose.addEventListener('click', closeAddCardPopupHandler ); // Прикрепить обработчик к кнопке закрытия попап добавления нового места
+popupCardAddForm.addEventListener('submit', submitCardAddHandler); // Прикрепить обработчик к форме добавления нового места
 
-popupCardAddButtonClose.addEventListener('click', handleCardAddClose); // Прикрепить обработчик к кнопке закрытия попап добавления нового места
-popupCardAddForm.addEventListener('submit', handleCardFormSubmit); // Прикрепить обработчик к форме добавления нового места
-
-popupImageFullsizeButtonClose.addEventListener('click', handleImageFullsizeClose); // Прикрепить обработчик к кнопке закрытия попап полноразмерной картинки
+popupImageFullsizeButtonClose.addEventListener('click', openImageFullsizeHandler); // Прикрепить обработчик к кнопке закрытия попап полноразмерной картинки
