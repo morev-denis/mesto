@@ -17,6 +17,7 @@ const popupCardAddForm = popupCardAdd.querySelector('.popup__container_feat_card
 const popupCardAddButtonClose = popupCardAdd.querySelector('.popup__button_action_close');
 const popupCardAddFormName = popupCardAdd.querySelector('.popup__input_field_place');
 const popupCardAddFormLink = popupCardAdd.querySelector('.popup__input_field_link');
+const buttonCardAdd = popupCardAddForm.querySelector('.popup__button_action_submit');
 
 const popupImageFullsize = document.querySelector('.popup_feat_image-fullsize');
 const popupImageFullsizeImg = popupImageFullsize.querySelector('.popup__image-fullsize');
@@ -25,6 +26,7 @@ const popupImageFullsizeButtonClose = popupImageFullsize.querySelector('.popup__
 
 const elementTemplate = document.querySelector('#element').content; // Шаблон карточки
 const elementsGrid = document.querySelector('.elements__grid'); // Список для вставки карточек
+
 
 // Функция запрета вертикального скролла
 function disableScrollY() {
@@ -37,16 +39,18 @@ function enableScrollY() {
 }
 
 // Функция закрытия попап по кнопке Escape
-function closePopupByEscapeHandler(targetPopup, evt) {
+function closePopupByEscapeHandler(evt) {
   if (evt.key === 'Escape') {
-    hidePopup(targetPopup);
+    const popupOpened = document.querySelector('.popup_opened');
+    hidePopup(popupOpened);
   }
 }
 
 // Функция закрытия попап по клику на оверлей
-function closePopupByClickOverlayHandler(targetPopup, evt) {
+function closePopupByClickOverlayHandler(evt) {
   if (evt.target.matches('.popup')) {
-    hidePopup(targetPopup);
+    const popupOpened = document.querySelector('.popup_opened');
+    hidePopup(popupOpened);
   }
 }
 
@@ -54,27 +58,22 @@ function closePopupByClickOverlayHandler(targetPopup, evt) {
 function showPopup(targetPopup) {
   targetPopup.classList.add('popup_opened');
   disableScrollY();
-  root.addEventListener('keydown', function (evt) {
-    closePopupByEscapeHandler(targetPopup, evt);
-  });
-  root.addEventListener('click', function (evt) {
-    closePopupByClickOverlayHandler(targetPopup, evt);
-  });
+  root.addEventListener('keydown', closePopupByEscapeHandler);
+  root.addEventListener('click', closePopupByClickOverlayHandler);
 }
 
 // Функция скрытия попап
 function hidePopup(targetPopup) {
   targetPopup.classList.remove('popup_opened');
   enableScrollY();
+  root.removeEventListener('keydown', closePopupByEscapeHandler);
+  root.removeEventListener('click', closePopupByClickOverlayHandler);
 }
 
 // Функция открытия попап редактирования профиля
 function openProfileEditHandler() {
-  const formElement = document.querySelector('.popup__container_feat_profile-edit');
-  const inputElementName = formElement.querySelector('.popup__input_field_name');
-  const inputElementJob = formElement.querySelector('.popup__input_field_job');
-  hideInputError(formElement, inputElementName, validationConfig); // Сбросить ошибки валидации в поле Имя
-  hideInputError(formElement, inputElementJob, validationConfig); // Сбросить ошибки валидации в поле О себе
+  hideInputError(popupProfileEditForm, popupProfileEditFormName, validationConfig); // Сбросить ошибки валидации в поле Имя
+  hideInputError(popupProfileEditForm, popupProfileEditFormJob, validationConfig); // Сбросить ошибки валидации в поле О себе
   showPopup(popupProfileEdit);
   popupProfileEditFormName.value = profileName.textContent;
   popupProfileEditFormJob.value = profileJob.textContent;
@@ -95,13 +94,9 @@ function submitProfileEditHandler(evt) {
 
 // Функция открытия попап добавления нового места
 function openCardAddHandler () {
-  const formElement = document.querySelector('.popup__container_feat_card-add');
-  const inputElementPlace = formElement.querySelector('.popup__input_field_place');
-  const inputElementLink = formElement.querySelector('.popup__input_field_link');
-  const buttonElement = formElement.querySelector('.popup__button_action_submit');
-  buttonElement.classList.add(validationConfig.inactiveButtonClass); // Заблокировать кнопку сохранения
-  hideInputError(formElement, inputElementPlace, validationConfig); // Сбросить ошибки валидации в поле Имя
-  hideInputError(formElement, inputElementLink, validationConfig); // Сбросить ошибки валидации в поле Ссылка
+  buttonCardAdd.classList.add(validationConfig.inactiveButtonClass); // Заблокировать кнопку сохранения
+  hideInputError(popupCardAddForm, popupCardAddFormName, validationConfig); // Сбросить ошибки валидации в поле Имя
+  hideInputError(popupCardAddForm, popupCardAddFormLink, validationConfig); // Сбросить ошибки валидации в поле Ссылка
   showPopup(popupCardAdd);
   popupCardAddForm.reset();
 }
