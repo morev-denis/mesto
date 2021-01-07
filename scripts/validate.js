@@ -74,3 +74,5 @@ const validationConfig = {
 };
 
 enableValidation(validationConfig);
+
+export {hideInputError, validationConfig}

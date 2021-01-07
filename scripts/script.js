@@ -1,3 +1,7 @@
+import {initialCards} from './initial-cards.js';
+import {validationConfig, hideInputError} from './validate.js';
+import {Card} from './Card.js';
+
 const root = document.querySelector('.root');
 
 const profile = document.querySelector('.profile');
@@ -19,14 +23,8 @@ const popupCardAddFormName = popupCardAdd.querySelector('.popup__input_field_pla
 const popupCardAddFormLink = popupCardAdd.querySelector('.popup__input_field_link');
 const buttonCardAdd = popupCardAddForm.querySelector('.popup__button_action_submit');
 
-const popupImageFullsize = document.querySelector('.popup_feat_image-fullsize');
-const popupImageFullsizeImg = popupImageFullsize.querySelector('.popup__image-fullsize');
-const popupImageFullsizeHeading = popupImageFullsize.querySelector('.popup__heading_feat_image-fullsize');
-const popupImageFullsizeButtonClose = popupImageFullsize.querySelector('.popup__button_action_close');
-
 const elementTemplate = document.querySelector('#element').content; // Шаблон карточки
 const elementsGrid = document.querySelector('.elements__grid'); // Список для вставки карточек
-
 
 // Функция запрета вертикального скролла
 function disableScrollY() {
@@ -106,40 +104,6 @@ function closeAddCardPopupHandler () {
   hidePopup(popupCardAdd);
 }
 
-// Функция открытия попап с полноразмерной картинкой
-function opneImageFullsizeHandler(link, name) {
-  popupImageFullsizeImg.src = link;
-  popupImageFullsizeImg.alt = name;
-  popupImageFullsizeHeading.textContent = name;
-  showPopup(popupImageFullsize);
-}
-
-// Функция закрытия попап с полноразмерной картинкой
-function openImageFullsizeHandler() {
-  hidePopup(popupImageFullsize);
-}
-
-// Функция формирования содержимого карточки
-function createCard(link, name) {
-  const element = elementTemplate.cloneNode(true);
-  const elementImage = element.querySelector('.element__image');
-  elementImage.src = link;
-  elementImage.alt = name;
-  element.querySelector('.element__heading').textContent = name;
-  element.querySelector('.element__like').addEventListener('click', function (evt) {
-    evt.target.classList.toggle('element__like_active');
-  });
-  element.querySelector('.element__delete').addEventListener('click', function (evt) {
-    evt.target.closest('.element').remove();
-  });
-
-  elementImage.addEventListener('click', function () {
-    opneImageFullsizeHandler(link, name);
-  });
-
-  return element;
-}
-
 // Функция добавления карточки
 function addCard(element) {
   elementsGrid.prepend(element);
@@ -147,14 +111,20 @@ function addCard(element) {
 
 // Функция добавления нового места
 function submitCardAddHandler(evt) {
+  const card = new Card(popupCardAddFormLink.value, popupCardAddFormName.value, elementTemplate);
+  const cardElement = card.createCard();
+
   evt.preventDefault(); // Отменить стандартную отправку формы
-  addCard(createCard(popupCardAddFormLink.value, popupCardAddFormName.value));
-  closeAddCardPopupHandler (); // Закрыть попап
+  addCard(cardElement);
+  closeAddCardPopupHandler(); // Закрыть попап
 }
 
 // Вывод карточек из массива при загрузке
-initialCards.forEach(function(item) {
-  addCard(createCard(item.link, item.name));
+initialCards.forEach((item) => {
+  const card = new Card(item.link, item.name, elementTemplate);
+  const cardElement = card.createCard();
+
+  addCard(cardElement);
 });
 
 profileButtonEdit.addEventListener('click', openProfileEditHandler); // Прикрепить обработчик к кнопке редактирования профиля
@@ -166,4 +136,4 @@ popupProfileEditForm.addEventListener('submit', submitProfileEditHandler); // П
 popupCardAddButtonClose.addEventListener('click', closeAddCardPopupHandler ); // Прикрепить обработчик к кнопке закрытия попап добавления нового места
 popupCardAddForm.addEventListener('submit', submitCardAddHandler); // Прикрепить обработчик к форме добавления нового места
 
-popupImageFullsizeButtonClose.addEventListener('click', openImageFullsizeHandler); // Прикрепить обработчик к кнопке закрытия попап полноразмерной картинки
+export {showPopup, hidePopup};

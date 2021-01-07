@@ -1,5 +1,5 @@
 // Массив для вывода карточек при загрузке
-const initialCards = [
+export const initialCards = [
   {
     name: 'Карачаево-Черкессия',
     link: 'https://cdn.pixabay.com/photo/2018/06/13/09/51/russia-3472330_960_720.jpg'
