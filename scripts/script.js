@@ -1,6 +1,7 @@
 import {initialCards} from './initial-cards.js';
-import {validationConfig, hideInputError} from './validate.js';
+import {validationConfig} from './validation-config.js';
 import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
 
 const root = document.querySelector('.root');
 
@@ -26,18 +27,21 @@ const buttonCardAdd = popupCardAddForm.querySelector('.popup__button_action_subm
 const elementTemplate = document.querySelector('#element').content; // Шаблон карточки
 const elementsGrid = document.querySelector('.elements__grid'); // Список для вставки карточек
 
+const profileEditFormValidator = new FormValidator(validationConfig, popupProfileEditForm);
+const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddForm);
+
 // Функция запрета вертикального скролла
-function disableScrollY() {
+const disableScrollY = () => {
   root.classList.add('root_scroll_disable');
 }
 
 // Функция разрешения вертикального скролла
-function enableScrollY() {
+const enableScrollY = () => {
   root.classList.remove('root_scroll_disable');
 }
 
 // Функция закрытия попап по кнопке Escape
-function closePopupByEscapeHandler(evt) {
+const closePopupByEscapeHandler = (evt) => {
   if (evt.key === 'Escape') {
     const popupOpened = document.querySelector('.popup_opened');
     hidePopup(popupOpened);
@@ -45,7 +49,7 @@ function closePopupByEscapeHandler(evt) {
 }
 
 // Функция закрытия попап по клику на оверлей
-function closePopupByClickOverlayHandler(evt) {
+const closePopupByClickOverlayHandler = (evt) => {
   if (evt.target.matches('.popup')) {
     const popupOpened = document.querySelector('.popup_opened');
     hidePopup(popupOpened);
@@ -53,7 +57,7 @@ function closePopupByClickOverlayHandler(evt) {
 }
 
 // Функция отображения попап
-function showPopup(targetPopup) {
+const showPopup = (targetPopup) => {
   targetPopup.classList.add('popup_opened');
   disableScrollY();
   root.addEventListener('keydown', closePopupByEscapeHandler);
@@ -61,7 +65,7 @@ function showPopup(targetPopup) {
 }
 
 // Функция скрытия попап
-function hidePopup(targetPopup) {
+const hidePopup = (targetPopup) => {
   targetPopup.classList.remove('popup_opened');
   enableScrollY();
   root.removeEventListener('keydown', closePopupByEscapeHandler);
@@ -69,21 +73,20 @@ function hidePopup(targetPopup) {
 }
 
 // Функция открытия попап редактирования профиля
-function openProfileEditHandler() {
-  hideInputError(popupProfileEditForm, popupProfileEditFormName, validationConfig); // Сбросить ошибки валидации в поле Имя
-  hideInputError(popupProfileEditForm, popupProfileEditFormJob, validationConfig); // Сбросить ошибки валидации в поле О себе
-  showPopup(popupProfileEdit);
+const openProfileEditHandler = () => {
+  popupProfileEditForm.reset();
   popupProfileEditFormName.value = profileName.textContent;
   popupProfileEditFormJob.value = profileJob.textContent;
+  showPopup(popupProfileEdit);
 }
 
 // Функция закрытия попап редактирования профиля
-function closeProfileEditHandler() {
+const closeProfileEditHandler = () => {
   hidePopup(popupProfileEdit);
 }
 
 // Функция изменения Имени и О себе через попап
-function submitProfileEditHandler(evt) {
+const submitProfileEditHandler = (evt) => {
   evt.preventDefault(); // Отменить стандартную отправку формы
   profileName.textContent = popupProfileEditFormName.value; // Присвоить Имени на HTML странице Имя из формы
   profileJob.textContent = popupProfileEditFormJob.value;  // Присвоить О себе на HTML странице О себе из формы
@@ -91,26 +94,24 @@ function submitProfileEditHandler(evt) {
 }
 
 // Функция открытия попап добавления нового места
-function openCardAddHandler () {
+const openCardAddHandler = () => {
   buttonCardAdd.classList.add(validationConfig.inactiveButtonClass); // Заблокировать кнопку сохранения
-  hideInputError(popupCardAddForm, popupCardAddFormName, validationConfig); // Сбросить ошибки валидации в поле Имя
-  hideInputError(popupCardAddForm, popupCardAddFormLink, validationConfig); // Сбросить ошибки валидации в поле Ссылка
-  showPopup(popupCardAdd);
   popupCardAddForm.reset();
+  showPopup(popupCardAdd);
 }
 
 // Функция закрытия попап добавления нового места
-function closeAddCardPopupHandler () {
+const closeAddCardPopupHandler = () => {
   hidePopup(popupCardAdd);
 }
 
 // Функция добавления карточки
-function addCard(element) {
+const addCard = (element) => {
   elementsGrid.prepend(element);
 }
 
 // Функция добавления нового места
-function submitCardAddHandler(evt) {
+const submitCardAddHandler = (evt) => {
   const card = new Card(popupCardAddFormLink.value, popupCardAddFormName.value, elementTemplate);
   const cardElement = card.createCard();
 
@@ -119,7 +120,7 @@ function submitCardAddHandler(evt) {
   closeAddCardPopupHandler(); // Закрыть попап
 }
 
-// Вывод карточек из массива при загрузке
+// Вывести карточки из массива при загрузке
 initialCards.forEach((item) => {
   const card = new Card(item.link, item.name, elementTemplate);
   const cardElement = card.createCard();
@@ -127,13 +128,29 @@ initialCards.forEach((item) => {
   addCard(cardElement);
 });
 
-profileButtonEdit.addEventListener('click', openProfileEditHandler); // Прикрепить обработчик к кнопке редактирования профиля
-profileButtonAdd.addEventListener('click', openCardAddHandler ); // Прикрепить обработчик к кнопке добавления нового места
 
-popupProfileEditButtonClose.addEventListener('click', closeProfileEditHandler); // Прикрепить обработчик к кнопке закрытия попап редактирования профиля
-popupProfileEditForm.addEventListener('submit', submitProfileEditHandler); // Прикрепить обработчик к форме редактирования профиля
+profileEditFormValidator.enableValidation(); // Включить валидацию формы редактирования профиля
+cardAddFormValidator.enableValidation(); // Включить валидацию формы добавления нового места
 
-popupCardAddButtonClose.addEventListener('click', closeAddCardPopupHandler ); // Прикрепить обработчик к кнопке закрытия попап добавления нового места
-popupCardAddForm.addEventListener('submit', submitCardAddHandler); // Прикрепить обработчик к форме добавления нового места
+profileButtonEdit.addEventListener('click', () => { // Прикрепить обработчик к кнопке редактирования профиля
+  openProfileEditHandler();
+});
+profileButtonAdd.addEventListener('click', () => { // Прикрепить обработчик к кнопке добавления нового места
+  openCardAddHandler();
+});
+
+popupProfileEditButtonClose.addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попап редактирования профиля
+  closeProfileEditHandler();
+});
+popupProfileEditForm.addEventListener('submit', (evt) => { // Прикрепить обработчик к форме редактирования профиля
+  submitProfileEditHandler(evt);
+});
+
+popupCardAddButtonClose.addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попап добавления нового места
+  closeAddCardPopupHandler();
+});
+popupCardAddForm.addEventListener('submit', (evt) => { // Прикрепить обработчик к форме добавления нового места
+  submitCardAddHandler(evt);
+});
 
 export {showPopup, hidePopup};

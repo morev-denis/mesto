@@ -1,4 +1,4 @@
-# Проект 6: Место
+# Проект 7: Место
 
 https://morev-denis.github.io/mesto/
 
@@ -22,7 +22,8 @@ https://morev-denis.github.io/mesto/
   * Медиазапросы
   * БЭМ;
   * Файловая структура БЭМ nested;
-  * JavaScript.
+  * JavaScript;
+  * Классы и модули JavaScript.
 
 ## Инструкция по просмотру
 
