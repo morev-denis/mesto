@@ -150,4 +150,4 @@ popupImageFullsizeButtonClose.addEventListener('click', () => { // Прикре�
   hidePopup(popupImageFullsize);
 });
 
-export {showPopup, hidePopup};
+export {showPopup};
