@@ -3,7 +3,6 @@ import {showPopup, hidePopup} from './script.js';
 const popupImageFullsize = document.querySelector('.popup_feat_image-fullsize');
 const popupImageFullsizeImg = popupImageFullsize.querySelector('.popup__image-fullsize');
 const popupImageFullsizeHeading = popupImageFullsize.querySelector('.popup__heading_feat_image-fullsize');
-const popupImageFullsizeButtonClose = popupImageFullsize.querySelector('.popup__button_action_close');
 
 class Card {
   constructor(link, name, elementTemplate) {
@@ -27,11 +26,6 @@ class Card {
     showPopup(popupImageFullsize);
   }
 
-  // Метод закрытия попап с полноразмерной картинкой
-  _closeImageFullsizeHandler() {
-    hidePopup(popupImageFullsize);
-  }
-
   // Метод установки (снятия) лайка
   _toggleLikeHandler(evt) {
     evt.target.classList.toggle('element__like_active');
@@ -43,21 +37,17 @@ class Card {
   }
 
   // Метод установки слушателей на кнопки лайка, корзины, крестика
-  _setEventListeners(element, elementImage) {
-    element.querySelector('.element__like').addEventListener('click', (evt) => { // Прикрепить обработчик к кнопке лайка
+  _setEventListeners() {
+    this._element.querySelector('.element__like').addEventListener('click', (evt) => { // Прикрепить обработчик к кнопке лайка
       this._toggleLikeHandler(evt);
     });
 
-    element.querySelector('.element__delete').addEventListener('click', (evt) => { // Прикрепить обработчик к кнопке корзины
+    this._element.querySelector('.element__delete').addEventListener('click', (evt) => { // Прикрепить обработчик к кнопке корзины
       this._removeCardHandler(evt);
     });
 
-    elementImage.addEventListener('click', () => { // Прикрепить обработчик к картинке карточки
-      this._openImageFullsizeHandler(elementImage.src, elementImage.alt);
-    });
-
-    popupImageFullsizeButtonClose.addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попап полноразмерной картинки
-      this._closeImageFullsizeHandler();
+    this._elementImage.addEventListener('click', () => { // Прикрепить обработчик к картинке карточки
+      this._openImageFullsizeHandler(this._elementImage.src, this._elementImage.alt);
     });
   }
 
@@ -71,7 +61,7 @@ class Card {
     this._elementImage.alt = this._name;
     this._elementHeading.textContent = this._name;
 
-    this._setEventListeners(this._element, this._elementImage);
+    this._setEventListeners();
 
     return this._element;
   }

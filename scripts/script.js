@@ -24,6 +24,9 @@ const popupCardAddFormName = popupCardAdd.querySelector('.popup__input_field_pla
 const popupCardAddFormLink = popupCardAdd.querySelector('.popup__input_field_link');
 const buttonCardAdd = popupCardAddForm.querySelector('.popup__button_action_submit');
 
+const popupImageFullsize = document.querySelector('.popup_feat_image-fullsize');
+const popupImageFullsizeButtonClose = popupImageFullsize.querySelector('.popup__button_action_close');
+
 const elementTemplate = document.querySelector('#element').content; // Шаблон карточки
 const elementsGrid = document.querySelector('.elements__grid'); // Список для вставки карточек
 
@@ -80,17 +83,12 @@ const openProfileEditHandler = () => {
   showPopup(popupProfileEdit);
 }
 
-// Функция закрытия попап редактирования профиля
-const closeProfileEditHandler = () => {
-  hidePopup(popupProfileEdit);
-}
-
 // Функция изменения Имени и О себе через попап
 const submitProfileEditHandler = (evt) => {
   evt.preventDefault(); // Отменить стандартную отправку формы
   profileName.textContent = popupProfileEditFormName.value; // Присвоить Имени на HTML странице Имя из формы
   profileJob.textContent = popupProfileEditFormJob.value;  // Присвоить О себе на HTML странице О себе из формы
-  closeProfileEditHandler(); // Закрыть попап
+  hidePopup(popupProfileEdit); // Закрыть попап
 }
 
 // Функция открытия попап добавления нового места
@@ -100,11 +98,6 @@ const openCardAddHandler = () => {
   showPopup(popupCardAdd);
 }
 
-// Функция закрытия попап добавления нового места
-const closeAddCardPopupHandler = () => {
-  hidePopup(popupCardAdd);
-}
-
 // Функция добавления карточки
 const addCard = (element) => {
   elementsGrid.prepend(element);
@@ -112,12 +105,13 @@ const addCard = (element) => {
 
 // Функция добавления нового места
 const submitCardAddHandler = (evt) => {
+  evt.preventDefault(); // Отменить стандартную отправку формы
+
   const card = new Card(popupCardAddFormLink.value, popupCardAddFormName.value, elementTemplate);
   const cardElement = card.createCard();
 
-  evt.preventDefault(); // Отменить стандартную отправку формы
   addCard(cardElement);
-  closeAddCardPopupHandler(); // Закрыть попап
+  hidePopup(popupCardAdd); // Закрыть попап
 }
 
 // Вывести карточки из массива при загрузке
@@ -127,7 +121,6 @@ initialCards.forEach((item) => {
 
   addCard(cardElement);
 });
-
 
 profileEditFormValidator.enableValidation(); // Включить валидацию формы редактирования профиля
 cardAddFormValidator.enableValidation(); // Включить валидацию формы добавления нового места
@@ -140,17 +133,21 @@ profileButtonAdd.addEventListener('click', () => { // Прикрепить об�
 });
 
 popupProfileEditButtonClose.addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попап редактирования профиля
-  closeProfileEditHandler();
+  hidePopup(popupProfileEdit);
 });
 popupProfileEditForm.addEventListener('submit', (evt) => { // Прикрепить обработчик к форме редактирования профиля
   submitProfileEditHandler(evt);
 });
 
 popupCardAddButtonClose.addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попап добавления нового места
-  closeAddCardPopupHandler();
+  hidePopup(popupCardAdd);
 });
 popupCardAddForm.addEventListener('submit', (evt) => { // Прикрепить обработчик к форме добавления нового места
   submitCardAddHandler(evt);
+});
+
+popupImageFullsizeButtonClose.addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попап полноразмерной картинки
+  hidePopup(popupImageFullsize);
 });
 
 export {showPopup, hidePopup};
