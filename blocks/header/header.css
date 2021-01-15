@@ -1,5 +1,4 @@
 .header {
-  /* min-height: calc((100vw - 320px) / (1280 - 320) * (74 - 56) + 56px); */
   box-sizing: border-box;
   border-bottom: solid 1px rgba(84, 84, 84, .7);
   padding-bottom: calc((100vw - 320px) / (1280 - 320) * (37 - 27.6) + 27.6px);

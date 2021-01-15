@@ -2,6 +2,7 @@
   padding: calc((100vw - 320px) / (1280 - 320) * (34 - 30) + 30px) calc((100vw - 320px) / (1280 - 320) * (36 - 20) + 20px) calc((100vw - 320px) / (1280 - 320) * (37 - 25) + 25px);
   width: calc((100vw - 320px) / (1280 - 320) * (430 - 240) + 240px);
   display: grid;
+  grid-template-rows: repeat(3, -webkit-min-content) 1fr;
   grid-template-rows: repeat(3, min-content) 1fr;
   background-color: #fff;
   margin: auto;
