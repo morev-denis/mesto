@@ -1,4 +1,4 @@
-import {showPopup} from './script.js';
+import {showPopup} from './index.js';
 
 const popupImageFullsize = document.querySelector('.popup_feat_image-fullsize');
 const popupImageFullsizeImg = popupImageFullsize.querySelector('.popup__image-fullsize');

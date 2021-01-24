@@ -2,6 +2,7 @@ import {initialCards} from './initial-cards.js';
 import {validationConfig} from './validation-config.js';
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
+import {UserInfo} from './UserInfo.js';
 
 const root = document.querySelector('.root');
 
@@ -77,17 +78,24 @@ const hidePopup = (targetPopup) => {
 
 // Функция открытия попап редактирования профиля
 const openProfileEditHandler = () => {
+  const userInfo = new UserInfo(profileName, profileJob);
+
   popupProfileEditForm.reset();
-  popupProfileEditFormName.value = profileName.textContent;
-  popupProfileEditFormJob.value = profileJob.textContent;
+
+  popupProfileEditFormName.value = userInfo.getUserInfo().name;
+  popupProfileEditFormJob.value = userInfo.getUserInfo().job;
+
   showPopup(popupProfileEdit);
 }
 
 // Функция изменения Имени и О себе через попап
 const submitProfileEditHandler = (evt) => {
   evt.preventDefault(); // Отменить стандартную отправку формы
-  profileName.textContent = popupProfileEditFormName.value; // Присвоить Имени на HTML странице Имя из формы
-  profileJob.textContent = popupProfileEditFormJob.value;  // Присвоить О себе на HTML странице О себе из формы
+
+  const userInfo = new UserInfo(profileName, profileJob);
+
+  userInfo.setUserInfo(popupProfileEditFormName, popupProfileEditFormJob);
+
   hidePopup(popupProfileEdit); // Закрыть попап
 }
 
