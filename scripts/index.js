@@ -3,6 +3,7 @@ import {validationConfig} from './validation-config.js';
 import {Card} from './Card.js';
 import {FormValidator} from './FormValidator.js';
 import {UserInfo} from './UserInfo.js';
+import {Popup} from './Popup.js';
 
 const root = document.querySelector('.root');
 
@@ -34,46 +35,18 @@ const elementsGrid = document.querySelector('.elements__grid'); // Список 
 const profileEditFormValidator = new FormValidator(validationConfig, popupProfileEditForm);
 const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddForm);
 
-// Функция запрета вертикального скролла
-const disableScrollY = () => {
-  root.classList.add('root_scroll_disable');
-}
-
-// Функция разрешения вертикального скролла
-const enableScrollY = () => {
-  root.classList.remove('root_scroll_disable');
-}
-
-// Функция закрытия попап по кнопке Escape
-const closePopupByEscapeHandler = (evt) => {
-  if (evt.key === 'Escape') {
-    const popupOpened = document.querySelector('.popup_opened');
-    hidePopup(popupOpened);
-  }
-}
-
-// Функция закрытия попап по клику на оверлей
-const closePopupByClickOverlayHandler = (evt) => {
-  if (evt.target.matches('.popup')) {
-    const popupOpened = document.querySelector('.popup_opened');
-    hidePopup(popupOpened);
-  }
-}
-
-// Функция отображения попап
+// Функция открытия попапа
 const showPopup = (targetPopup) => {
-  targetPopup.classList.add('popup_opened');
-  disableScrollY();
-  root.addEventListener('keydown', closePopupByEscapeHandler);
-  root.addEventListener('click', closePopupByClickOverlayHandler);
+  const popup = new Popup(targetPopup);
+  popup.open(); // Показать попап
+  popup.setEventListeners(); // Добавить слушатели на клик по оверлею, нажатию Esc,
 }
 
-// Функция скрытия попап
+// Функция закрытия попап
 const hidePopup = (targetPopup) => {
-  targetPopup.classList.remove('popup_opened');
-  enableScrollY();
-  root.removeEventListener('keydown', closePopupByEscapeHandler);
-  root.removeEventListener('click', closePopupByClickOverlayHandler);
+  const popup = new Popup(targetPopup);
+  popup.close(); // Скрыть попап
+  popup.unsetEventListeners(); // Снять слушатели на клик по оверлею, нажатию Esc,
 }
 
 // Функция открытия попап редактирования профиля

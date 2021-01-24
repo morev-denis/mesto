@@ -3,3 +3,5 @@ TODO.md
 *.fig
 layout/
 .vscode/
+node_modules/
+dist/
