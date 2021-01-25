@@ -1,6 +1,6 @@
 const root = document.querySelector('.root');
 
-class Popup {
+export default class Popup {
   constructor(targetPopup) {
     this._targetPopup = targetPopup;
   }
@@ -68,5 +68,3 @@ class Popup {
   }
 
 }
-
-export {Popup};

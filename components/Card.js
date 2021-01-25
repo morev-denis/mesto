@@ -1,10 +1,10 @@
-import {showPopup} from './index.js';
+import { showPopup } from '../pages/index.js';
 
 const popupImageFullsize = document.querySelector('.popup_feat_image-fullsize');
 const popupImageFullsizeImg = popupImageFullsize.querySelector('.popup__image-fullsize');
 const popupImageFullsizeHeading = popupImageFullsize.querySelector('.popup__heading_feat_image-fullsize');
 
-class Card {
+export default class Card {
   constructor(link, name, elementTemplate) {
     this._link = link;
     this._name = name;
@@ -66,5 +66,3 @@ class Card {
     return this._element;
   }
 }
-
-export {Card};

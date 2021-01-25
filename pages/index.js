@@ -1,35 +1,18 @@
-import { initialCards } from './initial-cards.js';
-import { validationConfig } from './validation-config.js';
-import { Card } from './Card.js';
-import { FormValidator } from './FormValidator.js';
-import { UserInfo } from './UserInfo.js';
-import { Popup } from './Popup.js';
-import { Section } from './Section.js';
-
-const profile = document.querySelector('.profile');
-const profileName = profile.querySelector('.profile__name');
-const profileJob = profile.querySelector('.profile__job');
-const profileButtonEdit = document.querySelector('.profile__button_action_edit');
-const profileButtonAdd = document.querySelector('.profile__button_action_add');
-
-const popupProfileEdit = document.querySelector('.popup_feat_profile-edit');
-const popupProfileEditForm = popupProfileEdit.querySelector('.popup__container_feat_profile-edit');
-const popupProfileEditButtonClose = popupProfileEdit.querySelector('.popup__button_action_close');
-const popupProfileEditFormName = popupProfileEdit.querySelector('.popup__input_field_name');
-const popupProfileEditFormJob = popupProfileEdit.querySelector('.popup__input_field_job');
-
-const popupCardAdd = document.querySelector('.popup_feat_card-add');
-const popupCardAddForm = popupCardAdd.querySelector('.popup__container_feat_card-add');
-const popupCardAddButtonClose = popupCardAdd.querySelector('.popup__button_action_close');
-const popupCardAddFormName = popupCardAdd.querySelector('.popup__input_field_place');
-const popupCardAddFormLink = popupCardAdd.querySelector('.popup__input_field_link');
-const buttonCardAdd = popupCardAddForm.querySelector('.popup__button_action_submit');
-
-const popupImageFullsize = document.querySelector('.popup_feat_image-fullsize');
-const popupImageFullsizeButtonClose = popupImageFullsize.querySelector('.popup__button_action_close');
-
-const elementTemplate = document.querySelector('#element').content; // Шаблон карточки
-const elementsGrid = document.querySelector('.elements__grid'); // Список для вставки карточек
+import { initialCards } from '../utils/initial-cards.js';
+import { validationConfig } from '../utils/validation-config.js';
+import Card from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import UserInfo from '../components/UserInfo.js';
+import Popup from '../components/Popup.js';
+import Section from '../components/Section.js';
+import {
+          profileName, profileJob, profileButtonEdit, profileButtonAdd,
+          popupProfileEdit, popupProfileEditForm, popupProfileEditButtonClose,
+          popupProfileEditFormName, popupProfileEditFormJob, popupCardAdd,
+          popupCardAddForm, popupCardAddButtonClose, popupCardAddFormName,
+          popupCardAddFormLink, buttonCardAdd, popupImageFullsize,
+          popupImageFullsizeButtonClose, elementTemplate, elementsGrid
+        } from '../utils/constants.js'
 
 const profileEditFormValidator = new FormValidator(validationConfig, popupProfileEditForm);
 const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddForm);

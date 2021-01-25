@@ -1,4 +1,4 @@
-class UserInfo {
+export default class UserInfo {
   constructor(profileName, profileJob) {
     this._profileName = profileName;
     this._profileJob = profileJob;
@@ -23,5 +23,3 @@ class UserInfo {
     this._profileJob.textContent = popupProfileEditFormJob.value; // Присвоить О себе на HTML странице О себе из формы
   }
 }
-
-export {UserInfo};
