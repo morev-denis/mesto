@@ -1,11 +1,10 @@
-import {initialCards} from './initial-cards.js';
-import {validationConfig} from './validation-config.js';
-import {Card} from './Card.js';
-import {FormValidator} from './FormValidator.js';
-import {UserInfo} from './UserInfo.js';
-import {Popup} from './Popup.js';
-
-const root = document.querySelector('.root');
+import { initialCards } from './initial-cards.js';
+import { validationConfig } from './validation-config.js';
+import { Card } from './Card.js';
+import { FormValidator } from './FormValidator.js';
+import { UserInfo } from './UserInfo.js';
+import { Popup } from './Popup.js';
+import { Section } from './Section.js';
 
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
@@ -34,6 +33,16 @@ const elementsGrid = document.querySelector('.elements__grid'); // Список 
 
 const profileEditFormValidator = new FormValidator(validationConfig, popupProfileEditForm);
 const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddForm);
+
+const cardSection = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const card = new Card(item.link, item.name, elementTemplate);
+    const cardElement = card.createCard();
+    cardSection.addItem(cardElement);
+  }
+
+}, elementsGrid)
 
 // Функция открытия попапа
 const showPopup = (targetPopup) => {
@@ -79,29 +88,21 @@ const openCardAddHandler = () => {
   showPopup(popupCardAdd);
 }
 
-// Функция добавления карточки
-const addCard = (element) => {
-  elementsGrid.prepend(element);
-}
-
 // Функция добавления нового места
 const submitCardAddHandler = (evt) => {
   evt.preventDefault(); // Отменить стандартную отправку формы
 
   const card = new Card(popupCardAddFormLink.value, popupCardAddFormName.value, elementTemplate);
-  const cardElement = card.createCard();
+  const cardElement = card.createCard(); // Получить разметку карточки
 
-  addCard(cardElement);
+  const section = new Section({}, elementsGrid);
+  section.addItem(cardElement); // Вставить разметку карточки в контейнер
+
   hidePopup(popupCardAdd); // Закрыть попап
 }
 
 // Вывести карточки из массива при загрузке
-initialCards.forEach((item) => {
-  const card = new Card(item.link, item.name, elementTemplate);
-  const cardElement = card.createCard();
-
-  addCard(cardElement);
-});
+cardSection.renderItems();
 
 profileEditFormValidator.enableValidation(); // Включить валидацию формы редактирования профиля
 cardAddFormValidator.enableValidation(); // Включить валидацию формы добавления нового места
@@ -131,4 +132,4 @@ popupImageFullsizeButtonClose.addEventListener('click', () => { // Прикре�
   hidePopup(popupImageFullsize);
 });
 
-export {showPopup};
+export { showPopup };
