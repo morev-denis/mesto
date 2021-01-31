@@ -18,6 +18,8 @@ export const popupCardAddFormLink = popupCardAdd.querySelector('.popup__input_fi
 export const buttonCardAdd = popupCardAddForm.querySelector('.popup__button_action_submit');
 
 export const popupImageFullsize = document.querySelector('.popup_feat_image-fullsize');
+export const popupImageFullsizeImg = popupImageFullsize.querySelector('.popup__image-fullsize');
+export const popupImageFullsizeHeading = popupImageFullsize.querySelector('.popup__heading_feat_image-fullsize');
 export const popupImageFullsizeButtonClose = popupImageFullsize.querySelector('.popup__button_action_close');
 
 export const elementTemplate = document.querySelector('#element').content; // Шаблон карточки
