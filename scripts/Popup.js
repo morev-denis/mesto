@@ -1,18 +1,20 @@
-const root = document.querySelector('.root');
+import { disableScrollY, enableScrollY } from '../utils/utils.js';
+import {
+  root,
+  popupProfileEditButtonClose,
+  popupCardAddButtonClose,
+  popupImageFullsizeButtonClose
+} from '../utils/constants.js';
 
-class Popup {
+export default class Popup {
   constructor(targetPopup) {
     this._targetPopup = targetPopup;
   }
 
-  // Метод запрета вертикального скролла
-  _disableScrollY() {
-    root.classList.add('root_scroll_disable');
-  }
-
-  // Метод разрешения вертикального скролла
-  _enableScrollY() {
-    root.classList.remove('root_scroll_disable');
+  // Метод закрытия попапа по крестику
+  _handleButtonClose() {
+    const popupOpened = document.querySelector('.popup_opened');
+    this.close(popupOpened);
   }
 
   // Метод закрытия попапа клавишей Esc
@@ -34,16 +36,16 @@ class Popup {
   // Метод открытия попапа
   open() {
     this._targetPopup.classList.add('popup_opened');
-    this._disableScrollY();
+    disableScrollY();
   }
 
   // Метод закрытия попапа
   close() {
     this._targetPopup.classList.remove('popup_opened');
-    this._enableScrollY();
+    enableScrollY();
   }
 
-  // Метод добавления слушателей на клик по оверлею, нажатию Esc
+  // Метод добавления слушателей на клик по оверлею, крестику, нажатию Esc
   setEventListeners() {
     root.addEventListener('keydown', (evt) =>  {
       this._handleEscClose(evt);
@@ -53,20 +55,16 @@ class Popup {
       this._handleOverlayClose(evt);
     });
 
-  }
-
-  // Метод снятия слушателей на клик по оверлею, нажатию Esc
-  unsetEventListeners() {
-    root.removeEventListener('keydown', (evt) =>  {
-      this._handleEscClose(evt);
+    popupProfileEditButtonClose.addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попап редактирования профиля
+      this._handleButtonClose();
     });
 
-    root.removeEventListener('click', (evt) => {
-      this._handleOverlayClose(evt);
+    popupCardAddButtonClose.addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попап добавления нового места
+      this._handleButtonClose();
     });
 
+    popupImageFullsizeButtonClose.addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попап полноразмерной картинки
+      this._handleButtonClose();
+    });
   }
-
 }
-
-export {Popup};
