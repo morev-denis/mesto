@@ -1,10 +1,7 @@
-import {showPopup} from './index.js';
+import PopupWithImage from './PopupWithImage.js';
+import { popupImageFullsize } from '../utils/constants.js';
 
-const popupImageFullsize = document.querySelector('.popup_feat_image-fullsize');
-const popupImageFullsizeImg = popupImageFullsize.querySelector('.popup__image-fullsize');
-const popupImageFullsizeHeading = popupImageFullsize.querySelector('.popup__heading_feat_image-fullsize');
-
-class Card {
+export default class Card {
   constructor(link, name, elementTemplate) {
     this._link = link;
     this._name = name;
@@ -20,10 +17,9 @@ class Card {
 
   // Метод открытия попап с полноразмерной картинкой
   _openImageFullsizeHandler(link, name) {
-    popupImageFullsizeImg.src = link;
-    popupImageFullsizeImg.alt = name;
-    popupImageFullsizeHeading.textContent = name;
-    showPopup(popupImageFullsize);
+    const popupWithImage = new PopupWithImage(popupImageFullsize);
+    popupWithImage.open({ link, name });
+    popupWithImage.setEventListeners();
   }
 
   // Метод установки (снятия) лайка
@@ -66,5 +62,3 @@ class Card {
     return this._element;
   }
 }
-
-export {Card};

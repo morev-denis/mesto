@@ -1,4 +1,4 @@
-class UserInfo {
+export default class UserInfo {
   constructor(profileName, profileJob) {
     this._profileName = profileName;
     this._profileJob = profileJob;
@@ -18,10 +18,8 @@ class UserInfo {
   }
 
   // Метод добавления новых данных пользователя
-  setUserInfo(popupProfileEditFormName, popupProfileEditFormJob) {
-    this._profileName.textContent = popupProfileEditFormName.value; // Присвоить Имени на HTML странице Имя из формы
-    this._profileJob.textContent = popupProfileEditFormJob.value; // Присвоить О себе на HTML странице О себе из формы
+  setUserInfo(data) {
+    this._profileName.textContent = data.profileName; // Присвоить Имени на HTML странице Имя из формы
+    this._profileJob.textContent = data.profileJob; // Присвоить О себе на HTML странице О себе из формы
   }
 }
-
-export {UserInfo};

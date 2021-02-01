@@ -1,4 +1,4 @@
-class Section {
+export default class Section {
   constructor({ items, renderer }, elementsGrid) {
     this._items = items;
     this._renderer = renderer;
@@ -18,5 +18,3 @@ class Section {
   }
 
 }
-
-export { Section };

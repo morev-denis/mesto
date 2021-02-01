@@ -1,4 +1,4 @@
-class FormValidator {
+export default class FormValidator {
   constructor(validationConfig, targetForm) {
     this._validationConfig = validationConfig;
     this._targetForm = targetForm;
@@ -32,7 +32,7 @@ class FormValidator {
   };
 
   // Метод установки слушателей на все поля формы
-  _setEventListners = (formElement) => {
+  _setEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll(this._validationConfig.inputSelector));
     const buttonElement = formElement.querySelector(this._validationConfig.submitButtonSelector);
 
@@ -71,8 +71,6 @@ class FormValidator {
     this._targetForm.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    this._setEventListners(this._targetForm);
+    this._setEventListeners(this._targetForm);
   }
 }
-
-export {FormValidator};
