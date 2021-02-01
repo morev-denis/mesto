@@ -1,4 +1,5 @@
 .root_scroll_disable {
-  overflow-y: hidden;
+  overflow: hidden;
   padding-right: 17px;
+
 }
