@@ -5,7 +5,7 @@ export default class FormValidator {
   }
 
   // Метод отображения ошибки валидации
-  _showInputError = (formElement, inputElement, errorMessage) => {
+  _showInputError(formElement, inputElement, errorMessage) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
     inputElement.classList.add(this._validationConfig.inputErrorClass);
@@ -14,7 +14,7 @@ export default class FormValidator {
   };
 
   // Метод скрытия ошибки валидации
-  _hideInputError = (formElement, inputElement) => {
+  _hideInputError(formElement, inputElement) {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
 
     inputElement.classList.remove(this._validationConfig.inputErrorClass);
@@ -23,7 +23,7 @@ export default class FormValidator {
   };
 
   // Метод валидации поля
-  _isValid = (formElement, inputElement) => {
+  _isValid(formElement, inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(formElement, inputElement, inputElement.validationMessage);
     } else {
@@ -32,7 +32,7 @@ export default class FormValidator {
   };
 
   // Метод установки слушателей на все поля формы
-  _setEventListeners = (formElement) => {
+  _setEventListeners(formElement) {
     const inputList = Array.from(formElement.querySelectorAll(this._validationConfig.inputSelector));
     const buttonElement = formElement.querySelector(this._validationConfig.submitButtonSelector);
 
@@ -52,14 +52,14 @@ export default class FormValidator {
   };
 
   // Метод проверки валидности всех полей формы
-  _hasInvalidInput = (inputList) => {
+  _hasInvalidInput(inputList) {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   };
 
   // Метод (раз)блокировки кнопки при валидации полей
-  _toggleButtonState = (inputList, buttonElement) => {
+  _toggleButtonState(inputList, buttonElement) {
     if (this._hasInvalidInput(inputList)) {
       buttonElement.classList.add(this._validationConfig.inactiveButtonClass);
     } else {
