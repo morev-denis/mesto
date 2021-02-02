@@ -1,3 +1,4 @@
+// import './styles/index.css'; // добавить импорт главного файла стилей
 import { initialCards } from '../utils/initial-cards.js';
 import { validationConfig } from '../utils/validation-config.js';
 import Card from '../components/Card.js';
