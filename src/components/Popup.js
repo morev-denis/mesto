@@ -8,6 +8,7 @@ import {
 export default class Popup {
   constructor(targetPopup) {
     this._targetPopup = targetPopup;
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
 
   // Метод закрытия попапа по крестику
@@ -32,18 +33,17 @@ export default class Popup {
   // Метод открытия попапа
   open() {
     this._targetPopup.classList.add('popup_opened');
+    root.addEventListener('keydown', this._handleEscClose);  // Добавить слушатель на нажатие Esc
   }
 
   // Метод закрытия попапа
   close() {
     this._targetPopup.classList.remove('popup_opened');
+    root.removeEventListener('keydown', this._handleEscClose); // Удалить слушатель на нажатие Esc
   }
 
-  // Метод добавления слушателей на клик по оверлею, крестику, нажатию Esc
+  // Метод добавления слушателей на клик по оверлею, крестику
   setEventListeners() {
-    root.addEventListener('keydown', (evt) =>  {
-      this._handleEscClose(evt);
-    });
 
     this._targetPopup.addEventListener('click', (evt) => {
       this._handleOverlayClose(evt);
