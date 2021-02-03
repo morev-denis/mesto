@@ -13,23 +13,20 @@ export default class Popup {
 
   // Метод закрытия попапа по крестику
   _handleButtonClose() {
-    const popupOpened = document.querySelector('.popup_opened');
-    this.close(popupOpened);
+    this.close(this._targetPopup);
   }
 
   // Метод закрытия попапа клавишей Esc
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
-      const popupOpened = document.querySelector('.popup_opened');
-      this.close(popupOpened);
+      this.close(this._targetPopup);
     }
   }
 
   // Метод закрытия попапа по клику на оверлей
   _handleOverlayClose(evt) {
     if (evt.target.matches('.popup')) {
-      const popupOpened = document.querySelector('.popup_opened');
-      this.close(popupOpened);
+      this.close(this._targetPopup);
     }
   }
 
@@ -51,7 +48,7 @@ export default class Popup {
       this._handleEscClose(evt);
     });
 
-    root.addEventListener('click', (evt) => {
+    this._targetPopup.addEventListener('click', (evt) => {
       this._handleOverlayClose(evt);
     });
 
