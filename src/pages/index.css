@@ -3,14 +3,12 @@
 @import url('../fonts/fonts.css');
 
 @import url('../blocks/root/root.css');
-@import url('../blocks/root/_scroll/root_scroll_disable.css');
 
 @import url('../blocks/page/page.css');
 @import url('../blocks/page/__header/page__header.css');
 @import url('../blocks/page/__profile/page__profile.css');
 @import url('../blocks/page/__elements/page__elements.css');
 @import url('../blocks/page/__footer/page__footer.css');
-
 
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__link/header__link.css');
@@ -41,8 +39,6 @@
 
 @import url('../blocks/popup/popup.css');
 
-@import url('../blocks/popup/_feat/popup_feat_profile-edit.css');
-@import url('../blocks/popup/_feat/popup_feat_card-add.css');
 @import url('../blocks/popup/_feat/popup_feat_image-fullsize.css');
 
 @import url('../blocks/popup/_opened/popup_opened.css');
@@ -62,7 +58,6 @@
 @import url('../blocks/popup/__field/popup__field.css');
 
 @import url('../blocks/popup/__input/popup__input.css');
-@import url('../blocks/popup/__input/_field/popup__input_field_name.css');
 @import url('../blocks/popup/__input/_field/popup__input_field_job.css');
 @import url('../blocks/popup/__input/_field/popup__input_field_place.css');
 @import url('../blocks/popup/__input/_field/popup__input_field_link.css');

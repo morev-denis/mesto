@@ -1,4 +1,3 @@
-import { disableScrollY, enableScrollY } from '../utils/utils.js';
 import {
   root,
   popupProfileEditButtonClose,
@@ -33,13 +32,11 @@ export default class Popup {
   // Метод открытия попапа
   open() {
     this._targetPopup.classList.add('popup_opened');
-    disableScrollY();
   }
 
   // Метод закрытия попапа
   close() {
     this._targetPopup.classList.remove('popup_opened');
-    enableScrollY();
   }
 
   // Метод добавления слушателей на клик по оверлею, крестику, нажатию Esc
