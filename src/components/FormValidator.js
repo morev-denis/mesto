@@ -36,6 +36,8 @@ export default class FormValidator {
     const inputList = Array.from(formElement.querySelectorAll(this._validationConfig.inputSelector));
     const buttonElement = formElement.querySelector(this._validationConfig.submitButtonSelector);
 
+    buttonElement.disabled = true; // заблокировать кнопку отправить
+
     formElement.addEventListener('reset', () => { // Установить слушатель на сброс формы, сбросить ошибки валидации, заблокировать кнопку
       inputList.forEach((inputElement) => {
         this._hideInputError(formElement, inputElement);
@@ -62,8 +64,10 @@ export default class FormValidator {
   _toggleButtonState(inputList, buttonElement) {
     if (this._hasInvalidInput(inputList)) {
       buttonElement.classList.add(this._validationConfig.inactiveButtonClass);
+      buttonElement.disabled = true;
     } else {
       buttonElement.classList.remove(this._validationConfig.inactiveButtonClass);
+      buttonElement.disabled = false;
     }
   };
 
