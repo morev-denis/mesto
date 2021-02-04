@@ -2,9 +2,9 @@ import PopupWithImage from './PopupWithImage.js';
 import { popupImageFullsize } from '../utils/constants.js';
 
 export default class Card {
-  constructor(link, name, elementTemplate) {
-    this._link = link;
-    this._name = name;
+  constructor({ placeLink, placeName }, elementTemplate) {
+    this._placeLink = placeLink;
+    this._placeName = placeName;
     this._elementTemplate = elementTemplate;
   }
 
@@ -16,9 +16,9 @@ export default class Card {
   }
 
   // Метод открытия попап с полноразмерной картинкой
-  _openImageFullsizeHandler(link, name) {
+  _openImageFullsizeHandler(placeLink, placeName) {
     const popupWithImage = new PopupWithImage(popupImageFullsize);
-    popupWithImage.open({ link, name });
+    popupWithImage.open({ placeLink, placeName });
     popupWithImage.setEventListeners();
   }
 
@@ -53,9 +53,9 @@ export default class Card {
     this._elementImage = this._element.querySelector('.element__image');
     this._elementHeading = this._element.querySelector('.element__heading');
 
-    this._elementImage.src = this._link;
-    this._elementImage.alt = this._name;
-    this._elementHeading.textContent = this._name;
+    this._elementImage.src = this._placeLink;
+    this._elementImage.alt = this._placeName;
+    this._elementHeading.textContent = this._placeName;
 
     this._setEventListeners();
 

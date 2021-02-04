@@ -28,10 +28,16 @@ import {
 const profileEditFormValidator = new FormValidator(validationConfig, popupProfileEditForm);
 const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddForm);
 
+const createNewCard = (data) => {
+  const card = new Card(data, elementTemplate);
+
+  return card;
+};
+
 const cardSection = new Section({
   items: initialCards,
   renderer: (item) => {
-    const card = new Card(item.link, item.name, elementTemplate);
+    const card = createNewCard(item, elementTemplate);
     const cardElement = card.createCard();
     cardSection.addItem(cardElement);
   }
@@ -46,8 +52,8 @@ const popupWithFormProfile = new PopupWithForm(popupProfileEdit, {
 });
 
 const popupWithFormAdd = new PopupWithForm(popupCardAdd, {
-  submit: () => {
-    const card = new Card(popupCardAddFormLink.value, popupCardAddFormName.value, elementTemplate);
+  submit: (item) => {
+    const card = createNewCard(item, elementTemplate);
     const cardElement = card.createCard(); // Получить разметку карточки
 
     const section = new Section({}, elementsGrid);

@@ -7,9 +7,9 @@ export default class PopupWithImage extends Popup {
   }
 
   open(data) {
-    popupImageFullsizeImg.src = data.link;
-    popupImageFullsizeImg.alt = data.name;
-    popupImageFullsizeHeading.textContent = data.name;
+    popupImageFullsizeImg.src = data.placeLink;
+    popupImageFullsizeImg.alt = data.placeName;
+    popupImageFullsizeHeading.textContent = data.placeName;
     super.open();
   }
 }
