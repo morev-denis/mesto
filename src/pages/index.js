@@ -18,8 +18,6 @@ import {
   popupProfileEditButtonSubmit,
   popupCardAdd,
   popupCardAddForm,
-  popupCardAddFormName,
-  popupCardAddFormLink,
   popupCardAddButtonSubmit,
   elementTemplate,
   elementsGrid
@@ -27,6 +25,7 @@ import {
 
 const profileEditFormValidator = new FormValidator(validationConfig, popupProfileEditForm);
 const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddForm);
+const userInfo = new UserInfo(profileName, profileJob);
 
 const createNewCard = (data) => {
   const card = new Card(data, elementTemplate);
@@ -45,8 +44,6 @@ const cardSection = new Section({
 
 const popupWithFormProfile = new PopupWithForm(popupProfileEdit, {
   submit: (data) => {
-    const userInfo = new UserInfo(profileName, profileJob);
-
     userInfo.setUserInfo(data);
   }
 });
@@ -64,7 +61,6 @@ const popupWithFormAdd = new PopupWithForm(popupCardAdd, {
 // Функция открытия попап редактирования профиля
 const openProfileEditHandler = () => {
   popupProfileEditButtonSubmit.classList.add(validationConfig.inactiveButtonClass); // Заблокировать кнопку сохранения
-  const userInfo = new UserInfo(profileName, profileJob);
 
   popupProfileEditFormName.value = userInfo.getUserInfo().name;
   popupProfileEditFormJob.value = userInfo.getUserInfo().job;
