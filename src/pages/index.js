@@ -26,7 +26,6 @@ import {
 const profileEditFormValidator = new FormValidator(validationConfig, popupProfileEditForm);
 const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddForm);
 const userInfo = new UserInfo(profileName, profileJob);
-// const section = new Section({}, elementsGrid);
 
 const createNewCard = (data) => {
   const card = new Card(data, elementTemplate);
@@ -62,8 +61,9 @@ const popupWithFormAdd = new PopupWithForm(popupCardAdd, {
 const openProfileEditHandler = () => {
   popupProfileEditButtonSubmit.classList.add(validationConfig.inactiveButtonClass); // Заблокировать кнопку сохранения
 
-  popupProfileEditFormName.value = userInfo.getUserInfo().name;
-  popupProfileEditFormJob.value = userInfo.getUserInfo().job;
+  const userData = userInfo.getUserInfo();
+  popupProfileEditFormName.value = userData.name;
+  popupProfileEditFormJob.value = userData.job;
 
   popupWithFormProfile.open();
   popupWithFormProfile.setEventListeners();
