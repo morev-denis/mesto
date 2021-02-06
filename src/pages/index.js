@@ -7,23 +7,23 @@ import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
-import {
-  profileButtonEdit,
-  profileButtonAdd,
-  profileName,
-  profileJob,
-  popupProfileEdit,
-  popupProfileEditForm,
-  popupProfileEditFormName,
-  popupProfileEditFormJob,
-  popupProfileEditButtonSubmit,
-  popupCardAdd,
-  popupCardAddForm,
-  popupCardAddButtonSubmit,
-  popupImageFullsize,
-  elementTemplate,
-  elementsGrid
-} from '../utils/constants.js';
+
+const profile = document.querySelector('.profile');
+const profileName = profile.querySelector('.profile__name');
+const profileJob = profile.querySelector('.profile__job');
+const profileButtonEdit = document.querySelector('.profile__button_action_edit');
+const profileButtonAdd = document.querySelector('.profile__button_action_add');
+const popupProfileEdit = document.querySelector('.popup_feat_profile-edit');
+const popupProfileEditForm = popupProfileEdit.querySelector('.popup__container_feat_profile-edit');
+const popupProfileEditFormName = popupProfileEdit.querySelector('.popup__input_field_name');
+const popupProfileEditFormJob = popupProfileEdit.querySelector('.popup__input_field_job');
+const popupProfileEditButtonSubmit = popupProfileEditForm.querySelector('.popup__button_action_submit');
+const popupCardAdd = document.querySelector('.popup_feat_card-add');
+const popupCardAddForm = popupCardAdd.querySelector('.popup__container_feat_card-add');
+const popupCardAddButtonSubmit = popupCardAddForm.querySelector('.popup__button_action_submit');
+const popupImageFullsize = document.querySelector('.popup_feat_image-fullsize');
+const elementTemplate = document.querySelector('#element').content; // Шаблон карточки
+const elementsGrid = document.querySelector('.elements__grid'); // Список для вставки карточек
 
 const profileEditFormValidator = new FormValidator(validationConfig, popupProfileEditForm);
 const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddForm);

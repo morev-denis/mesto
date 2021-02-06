@@ -1,4 +1,6 @@
-import { root, popupButtonClose } from '../utils/constants.js';
+import { popupButtonClose } from '../utils/constants.js';
+
+const root = document.querySelector('.root');
 
 export default class Popup {
   constructor(targetPopup) {
