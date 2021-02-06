@@ -10,7 +10,7 @@ export default class Popup {
 
   // Метод закрытия попапа по крестику
   _handleButtonClose() {
-    this.close(this._targetPopup);
+    this.close();
   }
 
   // Метод закрытия попапа клавишей Esc
