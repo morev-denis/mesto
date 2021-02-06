@@ -1,11 +1,9 @@
-import PopupWithImage from './PopupWithImage.js';
-import { popupImageFullsize } from '../utils/constants.js';
-
 export default class Card {
-  constructor({ placeLink, placeName }, elementTemplate) {
+  constructor({ placeLink, placeName }, elementTemplate, { handleCardClick }) {
     this._placeLink = placeLink;
     this._placeName = placeName;
     this._elementTemplate = elementTemplate;
+    this._handleCardClick = handleCardClick;
   }
 
   // Метод возврата разметки карточки
@@ -13,13 +11,6 @@ export default class Card {
     const element = this._elementTemplate.cloneNode(true);
 
     return element;
-  }
-
-  // Метод открытия попап с полноразмерной картинкой
-  _openImageFullsizeHandler(placeLink, placeName) {
-    const popupWithImage = new PopupWithImage(popupImageFullsize);
-    popupWithImage.open({ placeLink, placeName });
-    popupWithImage.setEventListeners();
   }
 
   // Метод установки (снятия) лайка
@@ -43,7 +34,7 @@ export default class Card {
     });
 
     this._elementImage.addEventListener('click', () => { // Прикрепить обработчик к картинке карточки
-      this._openImageFullsizeHandler(this._elementImage.src, this._elementImage.alt);
+      this._handleCardClick(this._elementImage.src, this._elementImage.alt);
     });
   }
 

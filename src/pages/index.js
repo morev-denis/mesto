@@ -6,6 +6,7 @@ import FormValidator from '../components/FormValidator.js';
 import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 import {
   profileButtonEdit,
   profileButtonAdd,
@@ -19,6 +20,7 @@ import {
   popupCardAdd,
   popupCardAddForm,
   popupCardAddButtonSubmit,
+  popupImageFullsize,
   elementTemplate,
   elementsGrid
 } from '../utils/constants.js';
@@ -26,9 +28,14 @@ import {
 const profileEditFormValidator = new FormValidator(validationConfig, popupProfileEditForm);
 const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddForm);
 const userInfo = new UserInfo(profileName, profileJob);
+const popupWithImage = new PopupWithImage(popupImageFullsize);
 
 const createNewCard = (data) => {
-  const card = new Card(data, elementTemplate);
+  const card = new Card(data, elementTemplate, {
+    handleCardClick: (placeLink, placeName) => {
+      popupWithImage.open({ placeLink, placeName });
+    }
+  });
 
   return card;
 };
@@ -66,7 +73,6 @@ const openProfileEditHandler = () => {
   popupProfileEditFormJob.value = userData.job;
 
   popupWithFormProfile.open();
-  popupWithFormProfile.setEventListeners();
 };
 
 // Функция открытия попап добавления нового места
@@ -74,7 +80,6 @@ const openCardAddHandler = () => {
   popupCardAddButtonSubmit.classList.add(validationConfig.inactiveButtonClass); // Заблокировать кнопку сохранения
 
   popupWithFormAdd.open();
-  popupWithFormAdd.setEventListeners();
 };
 
 // Вывести карточки из массива при загрузке
@@ -82,6 +87,10 @@ cardSection.renderItems();
 
 profileEditFormValidator.enableValidation(); // Включить валидацию формы редактирования профиля
 cardAddFormValidator.enableValidation(); // Включить валидацию формы добавления нового места
+
+popupWithFormProfile.setEventListeners();
+popupWithFormAdd.setEventListeners();
+popupWithImage.setEventListeners();
 
 profileButtonEdit.addEventListener('click', () => { // Прикрепить обработчик к кнопке редактирования профиля
   openProfileEditHandler();
