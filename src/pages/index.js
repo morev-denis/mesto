@@ -77,8 +77,7 @@ const openProfileEditHandler = () => {
 
 // Функция открытия попап добавления нового места
 const openCardAddHandler = () => {
-  popupCardAddButtonSubmit.classList.add(validationConfig.inactiveButtonClass); // Заблокировать кнопку сохранения
-
+  cardAddFormValidator.disableButton(popupCardAddButtonSubmit); // Заблокировать кнопку
   popupWithFormAdd.open();
 };
 

@@ -60,11 +60,16 @@ export default class FormValidator {
     });
   };
 
+  // Метод блокировки кнопки
+  disableButton(buttonElement) {
+    buttonElement.classList.add(this._validationConfig.inactiveButtonClass);
+    buttonElement.disabled = true;
+  }
+
   // Метод (раз)блокировки кнопки при валидации полей
   _toggleButtonState(inputList, buttonElement) {
     if (this._hasInvalidInput(inputList)) {
-      buttonElement.classList.add(this._validationConfig.inactiveButtonClass);
-      buttonElement.disabled = true;
+      this.disableButton(buttonElement);
     } else {
       buttonElement.classList.remove(this._validationConfig.inactiveButtonClass);
       buttonElement.disabled = false;
