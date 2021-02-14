@@ -7,10 +7,12 @@ import UserInfo from '../components/UserInfo.js';
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import Api from '../components/Api.js';
 
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
 const profileJob = profile.querySelector('.profile__job');
+const profileAvatar = profile.querySelector('.profile__avatar');
 const profileButtonEdit = document.querySelector('.profile__button_action_edit');
 const profileButtonAdd = document.querySelector('.profile__button_action_add');
 const popupProfileEdit = document.querySelector('.popup_feat_profile-edit');
@@ -29,6 +31,7 @@ const profileEditFormValidator = new FormValidator(validationConfig, popupProfil
 const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddForm);
 const userInfo = new UserInfo(profileName, profileJob);
 const popupWithImage = new PopupWithImage(popupImageFullsize);
+const api = new Api();
 
 const createNewCard = (data) => {
   const card = new Card(data, elementTemplate, {
@@ -69,6 +72,7 @@ const openProfileEditHandler = () => {
   popupProfileEditButtonSubmit.classList.add(validationConfig.inactiveButtonClass); // Заблокировать кнопку сохранения
 
   const userData = userInfo.getUserInfo();
+  // api.getUserInfo();
   popupProfileEditFormName.value = userData.name;
   popupProfileEditFormJob.value = userData.job;
 
@@ -83,6 +87,15 @@ const openCardAddHandler = () => {
 
 // Вывести карточки из массива при загрузке
 cardSection.renderItems();
+
+// Установить данные профиля с сервера
+api.getUserInfo()
+.then((data) => {
+  profileName.textContent = data.name;
+  profileJob.textContent = data.about;
+  profileAvatar.src = data.avatar;
+});
+
 
 profileEditFormValidator.enableValidation(); // Включить валидацию формы редактирования профиля
 cardAddFormValidator.enableValidation(); // Включить валидацию формы добавления нового места
