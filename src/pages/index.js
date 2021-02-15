@@ -1,5 +1,4 @@
 import './index.css'; // добавить импорт главного файла стилей
-import { initialCards } from '../utils/initial-cards.js';
 import { validationConfig } from '../utils/validation-config.js';
 import Card from '../components/Card.js';
 import FormValidator from '../components/FormValidator.js';
@@ -44,7 +43,7 @@ const createNewCard = (data) => {
 };
 
 const cardSection = new Section({
-  items: initialCards,
+  // items: initialCards,
   renderer: (item) => {
     const card = createNewCard(item, elementTemplate);
     const cardElement = card.createCard();
@@ -85,9 +84,6 @@ const openCardAddHandler = () => {
   popupWithFormAdd.open();
 };
 
-// Вывести карточки из массива при загрузке
-cardSection.renderItems();
-
 // Установить данные профиля с сервера
 api.getUserInfo()
 .then((data) => {
@@ -96,6 +92,11 @@ api.getUserInfo()
   profileAvatar.src = data.avatar;
 });
 
+// Вывести карточки с сервера при загрузке
+api.getInitialCards()
+.then((data) => {
+  cardSection.renderItems(data);
+});
 
 profileEditFormValidator.enableValidation(); // Включить валидацию формы редактирования профиля
 cardAddFormValidator.enableValidation(); // Включить валидацию формы добавления нового места

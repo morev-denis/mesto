@@ -1,13 +1,13 @@
 export default class Section {
-  constructor({ items, renderer }, elementsGrid) {
-    this._items = items;
+  constructor({ renderer }, elementsGrid) {
+    // this._items = items;
     this._renderer = renderer;
     this._elementsGrid = elementsGrid;
   }
 
   // Метод отрисовки карточек
-  renderItems() {
-    this._items.forEach((item) => {
+  renderItems(items) {
+    items.forEach((item) => {
       this._renderer(item);
     });
   }
@@ -16,5 +16,4 @@ export default class Section {
   addItem(element) {
     this._elementsGrid.prepend(element);
   }
-
 }
