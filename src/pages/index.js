@@ -43,7 +43,6 @@ const createNewCard = (data) => {
 };
 
 const cardSection = new Section({
-  // items: initialCards,
   renderer: (item) => {
     const card = createNewCard(item, elementTemplate);
     const cardElement = card.createCard();
@@ -54,15 +53,20 @@ const cardSection = new Section({
 const popupWithFormProfile = new PopupWithForm(popupProfileEdit, {
   submit: (data) => {
     userInfo.setUserInfo(data);
-    api.setUserInfo({name: data.profileName, about: data.profileJob})
+    api.setUserInfo({ name: data.profileName, about: data.profileJob })
     .then((data) => {
       console.log(data);
-    })
+    });
   }
 });
 
 const popupWithFormAdd = new PopupWithForm(popupCardAdd, {
   submit: (item) => {
+    api.addCard({ name: item.name, link: item.link })
+    .then((data) => {
+      console.log(data);
+    });
+
     const card = createNewCard(item, elementTemplate);
     const cardElement = card.createCard(); // Получить разметку карточки
 
@@ -75,7 +79,6 @@ const openProfileEditHandler = () => {
   popupProfileEditButtonSubmit.classList.add(validationConfig.inactiveButtonClass); // Заблокировать кнопку сохранения
 
   const userData = userInfo.getUserInfo();
-  // api.getUserInfo();
   popupProfileEditFormName.value = userData.name;
   popupProfileEditFormJob.value = userData.job;
 
@@ -99,7 +102,7 @@ api.getUserInfo()
 // Вывести карточки с сервера при загрузке
 api.getInitialCards()
 .then((data) => {
-  cardSection.renderItems(data);
+  cardSection.renderItems(data.reverse());
 });
 
 profileEditFormValidator.enableValidation(); // Включить валидацию формы редактирования профиля
