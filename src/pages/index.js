@@ -54,6 +54,10 @@ const cardSection = new Section({
 const popupWithFormProfile = new PopupWithForm(popupProfileEdit, {
   submit: (data) => {
     userInfo.setUserInfo(data);
+    api.setUserInfo({name: data.profileName, about: data.profileJob})
+    .then((data) => {
+      console.log(data);
+    })
   }
 });
 
