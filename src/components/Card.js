@@ -1,9 +1,11 @@
 export default class Card {
-  constructor({ link, name }, elementTemplate, { handleCardClick }) {
-    this._link = link;
-    this._name = name;
+  constructor(data, elementTemplate, { handleCardClick }) {
+    this._data = data;
+    this._link = data.link;
+    this._name = data.name;
     this._elementTemplate = elementTemplate;
     this._handleCardClick = handleCardClick;
+    this._numLikeElement = document.querySelector('.element__like-number');
   }
 
   // Метод возврата разметки карточки
@@ -38,15 +40,23 @@ export default class Card {
     });
   }
 
+  // Метод установки количества лайков
+  _renderLikeNum(data, element) {
+    element.textContent = String(data.likes.length);
+  }
+
   // Метод создания карточки - добавление данных, установка слушателей
   createCard() {
     this._element = this._getTemplate();
     this._elementImage = this._element.querySelector('.element__image');
     this._elementHeading = this._element.querySelector('.element__heading');
+    this._elementLikeNum = this._element.querySelector('.element__like-number');
 
-    this._elementImage.src = this._link;
-    this._elementImage.alt = this._name;
-    this._elementHeading.textContent = this._name;
+    this._elementImage.src = this._data.link;
+    this._elementImage.alt = this._data.name;
+    this._elementHeading.textContent = this._data.name;
+
+    this._renderLikeNum(this._data, this._elementLikeNum); // Установить количество лайков у карточки
 
     this._setEventListeners();
 

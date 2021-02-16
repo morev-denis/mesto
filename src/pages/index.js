@@ -38,7 +38,6 @@ const createNewCard = (data) => {
       popupWithImage.open({ placeLink, placeName });
     }
   });
-
   return card;
 };
 
