@@ -7,6 +7,7 @@ import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import Api from '../components/Api.js';
+import PopupWithSubmit from '../components/PopupWithSubmit';
 
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
@@ -20,6 +21,7 @@ const popupProfileEditFormName = popupProfileEdit.querySelector('.popup__input_f
 const popupProfileEditFormJob = popupProfileEdit.querySelector('.popup__input_field_job');
 const popupProfileEditButtonSubmit = popupProfileEditForm.querySelector('.popup__button_action_submit');
 const popupCardAdd = document.querySelector('.popup_feat_card-add');
+const popupCardDelete = document.querySelector('.popup_feat_card-delete');
 const popupCardAddForm = popupCardAdd.querySelector('.popup__container_feat_card-add');
 const popupCardAddButtonSubmit = popupCardAddForm.querySelector('.popup__button_action_submit');
 const popupImageFullsize = document.querySelector('.popup_feat_image-fullsize');
@@ -31,11 +33,20 @@ const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddFor
 const userInfo = new UserInfo(profileName, profileJob);
 const popupWithImage = new PopupWithImage(popupImageFullsize);
 const api = new Api();
+const popupWithSubmit = new PopupWithSubmit(popupCardDelete, {
+  clickButtonHandler: (evt) => {
+    evt.target.closest('.element').remove();
+    popupWithSubmit.close();
+  }
+});
 
 const createNewCard = (data) => {
   const card = new Card(data, elementTemplate, {
     handleCardClick: (placeLink, placeName) => {
       popupWithImage.open({ placeLink, placeName });
+    },
+    handleCardDelete: (evt) => {
+      popupWithSubmit.open(evt);
     }
   });
   return card;
@@ -110,6 +121,7 @@ cardAddFormValidator.enableValidation(); // Включить валидацию 
 popupWithFormProfile.setEventListeners();
 popupWithFormAdd.setEventListeners();
 popupWithImage.setEventListeners();
+popupWithSubmit.setEventListeners();
 
 profileButtonEdit.addEventListener('click', () => { // Прикрепить обработчик к кнопке редактирования профиля
   openProfileEditHandler();

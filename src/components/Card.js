@@ -1,11 +1,11 @@
 export default class Card {
-  constructor(data, elementTemplate, { handleCardClick }) {
+  constructor(data, elementTemplate, { handleCardClick, handleCardDelete }) {
     this._data = data;
     this._link = data.link;
     this._name = data.name;
     this._elementTemplate = elementTemplate;
     this._handleCardClick = handleCardClick;
-    this._numLikeElement = document.querySelector('.element__like-number');
+    this._handleCardDelete = handleCardDelete;
   }
 
   // Метод возврата разметки карточки
@@ -20,11 +20,6 @@ export default class Card {
     evt.target.classList.toggle('element__like_active');
   }
 
-  // Метод удаления карточки
-  _removeCardHandler(evt) {
-    evt.target.closest('.element').remove();
-  }
-
   // Метод установки слушателей на кнопки лайка, корзины, крестика
   _setEventListeners() {
     this._element.querySelector('.element__like').addEventListener('click', (evt) => { // Прикрепить обработчик к кнопке лайка
@@ -32,7 +27,7 @@ export default class Card {
     });
 
     this._element.querySelector('.element__delete').addEventListener('click', (evt) => { // Прикрепить обработчик к кнопке корзины
-      this._removeCardHandler(evt);
+      this._handleCardDelete(evt);
     });
 
     this._elementImage.addEventListener('click', () => { // Прикрепить обработчик к картинке карточки

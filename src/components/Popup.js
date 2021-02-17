@@ -1,4 +1,4 @@
-import { popupButtonClose } from '../utils/constants.js';
+import { popupButtonCloseSelector } from '../utils/constants.js';
 
 const root = document.querySelector('.root');
 
@@ -45,7 +45,7 @@ export default class Popup {
       this._handleOverlayClose(evt);
     });
 
-    this._targetPopup.querySelector(popupButtonClose).addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попапа
+    this._targetPopup.querySelector(popupButtonCloseSelector).addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попапа
       this._handleButtonClose();
     });
   }
