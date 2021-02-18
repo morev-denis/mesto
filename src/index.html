@@ -17,7 +17,10 @@
 
       <main class="content">
         <section class="profile page__profile">
-          <img class="profile__avatar" src="" alt="Аватар">
+          <div class="profile__avatar">
+            <img class="profile__avatar-img" src="#" alt="Аватар">
+            <button class="profile__button_action_edit-avatar"></button>
+          </div>
           <h1 class="profile__name"></h1>
           <button class="profile__button profile__button_action_edit" type="button"></button>
           <p class="profile__job"></p>
@@ -52,6 +55,23 @@
         <button class="popup__button popup__button_action_submit" type="submit">Сохранить</button>
       </form>
     </div>
+
+    <!-- Попап со сменой аватара -->
+    <!-- <div class="popup popup_feat_avatar-update">
+      <form class="popup__container popup__container_form popup__container_feat_profile-edit" name="form-profile-edit" novalidate>
+        <button class="popup__button popup__button_action_close popup__button_position_profile-edit-close" type="button"></button>
+        <h2 class="popup__heading popup__heading_feat_profile-edit">Редактировать профиль</h2>
+        <label class="popup__field">
+          <input id="profile-edit-input-name" class="popup__input popup__input_field_name" type="text" placeholder="Имя" name="profileName" required minlength="2" maxlength="40">
+          <span class="profile-edit-input-name-error popup__input-error"></span>
+        </label>
+        <label class="popup__field">
+          <input id="profile-edit-input-job" class="popup__input popup__input_field_job" type="text" placeholder="О себе" name="profileJob" required minlength="2" maxlength="200">
+          <span class="profile-edit-input-job-error popup__input-error"></span>
+        </label>
+        <button class="popup__button popup__button_action_submit" type="submit">Сохранить</button>
+      </form>
+    </div> -->
 
     <!-- Попап с добавлением нового места -->
     <div class="popup popup_feat_card-add">

@@ -12,7 +12,7 @@ import PopupWithSubmit from '../components/PopupWithSubmit';
 const profile = document.querySelector('.profile');
 const profileName = profile.querySelector('.profile__name');
 const profileJob = profile.querySelector('.profile__job');
-const profileAvatar = profile.querySelector('.profile__avatar');
+const profileAvatar = profile.querySelector('.profile__avatar-img');
 const profileButtonEdit = document.querySelector('.profile__button_action_edit');
 const profileButtonAdd = document.querySelector('.profile__button_action_add');
 const popupProfileEdit = document.querySelector('.popup_feat_profile-edit');
