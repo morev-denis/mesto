@@ -1,4 +1,4 @@
-.popup__container_feat_card-add {
+.popup__container_feat_avatar-update {
   padding: calc((100vw - 320px) / (1280 - 320) * (34 - 30) + 30px) calc((100vw - 320px) / (1280 - 320) * (36 - 20) + 20px) calc((100vw - 320px) / (1280 - 320) * (37 - 25) + 25px);
   width: calc((100vw - 320px) / (1280 - 320) * (430 - 240) + 240px);
   display: grid;
@@ -10,7 +10,7 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .popup__container_feat_card-add {
+  .popup__container_feat_avatar-update {
     padding: 34px 36px 37px;
     width: 430px;
   }
