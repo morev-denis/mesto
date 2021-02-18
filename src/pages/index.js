@@ -38,7 +38,7 @@ const elementsGrid = document.querySelector('.elements__grid'); // Список 
 const profileEditFormValidator = new FormValidator(validationConfig, popupProfileEditForm);
 const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddForm);
 const avatarUpdateFormValidator = new FormValidator(validationConfig, popupAvatarUpdateForm);
-const userInfo = new UserInfo(profileName, profileJob);
+const userInfo = new UserInfo(profileName, profileJob, profileAvatar);
 const popupWithImage = new PopupWithImage(popupImageFullsize);
 const api = new Api();
 const popupWithSubmit = new PopupWithSubmit(popupCardDelete, {
@@ -70,11 +70,11 @@ const cardSection = new Section({
 
 const popupWithFormAvatar = new PopupWithForm(popupAvatarUpdate, {
   submit: (data) => {
-    // userInfo.setUserInfo(data);
-    // api.setUserInfo({ name: data.profileName, about: data.profileJob })
-    // .then((data) => {
-    //   console.log(data);
-    // });
+    userInfo.setUserAvatar(data);
+    api.updateAvatar({ avatar: data.avatar })
+    .then((data) => {
+      console.log(data);
+    });
   }
 });
 

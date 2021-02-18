@@ -27,7 +27,7 @@ export default class Api {
     });
   }
 
-  setUserInfo({ name, about }) {
+  setUserInfo({ name, about, avatar }) {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-20/users/me', {
       method: 'PATCH',
       headers: {
@@ -36,7 +36,8 @@ export default class Api {
       },
       body: JSON.stringify({
         name: `${name}`,
-        about: `${about}`
+        about: `${about}`,
+        avatar: `${avatar}`
       })
     });
   }
@@ -51,6 +52,19 @@ export default class Api {
       body: JSON.stringify({
         name: `${name}`,
         link: `${link}`
+      })
+    });
+  }
+
+  updateAvatar({ avatar }) {
+    return fetch('https://mesto.nomoreparties.co/v1/cohort-20/users/me/avatar', {
+      method: 'PATCH',
+      headers: {
+        authorization: '6d1b76d0-8a79-4ce2-87f0-35c2e1868bd2',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        avatar: `${avatar}`
       })
     });
   }

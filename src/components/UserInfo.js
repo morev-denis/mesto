@@ -1,7 +1,8 @@
 export default class UserInfo {
-  constructor(profileName, profileJob) {
+  constructor(profileName, profileJob, userAvatar) {
     this._profileName = profileName;
     this._profileJob = profileJob;
+    this._userAvatar = userAvatar;
   }
 
   // Метод возврата объекта с данными пользователя
@@ -12,6 +13,11 @@ export default class UserInfo {
     }
 
     return userInfo;
+  }
+
+  // Метод добавления нового аватара пользователя
+  setUserAvatar(data) {
+    this._userAvatar.src = data.avatar;
   }
 
   // Метод добавления новых данных пользователя
