@@ -10,16 +10,19 @@ export default class PopupWithSubmit extends Popup {
   }
 
   _clickEvtHandler() {
-    this._clickButtonHandler(this._evt);
+    this._clickButtonHandler(this._data);
   }
 
   setEventListeners() {
-    this._button.addEventListener('click', this._clickEvtHandler);
+    this._button.addEventListener('click', (evt) => {
+      this._clickEvtHandler();
+      // evt.target.closest('.element').remove();
+    });
     super.setEventListeners();
   }
 
-  open(evt) {
-    this._evt = evt;
+  open(data) {
+    this._data = data;
     super.open();
   }
 }

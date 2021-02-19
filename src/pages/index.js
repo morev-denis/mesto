@@ -41,9 +41,19 @@ const avatarUpdateFormValidator = new FormValidator(validationConfig, popupAvata
 const userInfo = new UserInfo(profileName, profileJob, profileAvatar);
 const popupWithImage = new PopupWithImage(popupImageFullsize);
 const api = new Api();
+
+let ownerId = {};
+let evtCard = {};
+
 const popupWithSubmit = new PopupWithSubmit(popupCardDelete, {
-  clickButtonHandler: (evt) => {
-    evt.target.closest('.element').remove();
+  clickButtonHandler: (data) => {
+    api.deleteCard(data)
+    .then((res) => {
+      console.log(res);
+    });
+
+    evtCard.target.closest('.element').remove();
+
     popupWithSubmit.close();
   }
 });
@@ -54,7 +64,8 @@ const createNewCard = (data) => {
       popupWithImage.open({ placeLink, placeName });
     },
     handleCardDelete: (evt) => {
-      popupWithSubmit.open(evt);
+      evtCard = evt;
+      popupWithSubmit.open(data);
     }
   });
   return card;
@@ -123,8 +134,6 @@ const openAvatarUpdateHandler = () => {
   cardAddFormValidator.disableButton(popupAvatarUpdateButtonSubmit); // Заблокировать кнопку
   popupWithFormAvatar.open();
 };
-
-let ownerId = {};
 
 // Установить данные профиля с сервера
 api.getUserInfo()

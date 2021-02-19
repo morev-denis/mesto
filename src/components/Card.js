@@ -41,9 +41,7 @@ export default class Card {
       this._toggleLikeHandler(evt);
     });
 
-    this._element.querySelector('.element__delete').addEventListener('click', (evt) => { // Прикрепить обработчик к кнопке корзины
-      this._handleCardDelete(evt);
-    });
+    this._element.querySelector('.element__delete').addEventListener('click', this._handleCardDelete); // Прикрепить обработчик к кнопке корзины
 
     this._elementImage.addEventListener('click', () => { // Прикрепить обработчик к картинке карточки
       this._handleCardClick(this._elementImage.src, this._elementImage.alt);

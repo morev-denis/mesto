@@ -56,6 +56,16 @@ export default class Api {
     });
   }
 
+  deleteCard(data) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-20/cards/${data._id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: '6d1b76d0-8a79-4ce2-87f0-35c2e1868bd2',
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+
   updateAvatar({ avatar }) {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-20/users/me/avatar', {
       method: 'PATCH',
