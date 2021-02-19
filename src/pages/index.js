@@ -49,7 +49,7 @@ const popupWithSubmit = new PopupWithSubmit(popupCardDelete, {
 });
 
 const createNewCard = (data) => {
-  const card = new Card(data, elementTemplate, {
+  const card = new Card(data, elementTemplate, ownerId, {
     handleCardClick: (placeLink, placeName) => {
       popupWithImage.open({ placeLink, placeName });
     },
@@ -124,12 +124,15 @@ const openAvatarUpdateHandler = () => {
   popupWithFormAvatar.open();
 };
 
+let ownerId = {};
+
 // Установить данные профиля с сервера
 api.getUserInfo()
 .then((data) => {
   profileName.textContent = data.name;
   profileJob.textContent = data.about;
   profileAvatar.src = data.avatar;
+  ownerId = data._id;
 });
 
 // Вывести карточки с сервера при загрузке

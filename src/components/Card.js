@@ -1,9 +1,10 @@
 export default class Card {
-  constructor(data, elementTemplate, { handleCardClick, handleCardDelete }) {
+  constructor(data, elementTemplate, ownerId, { handleCardClick, handleCardDelete }) {
     this._data = data;
     this._link = data.link;
     this._name = data.name;
     this._elementTemplate = elementTemplate;
+    this._ownerId = ownerId;
     this._handleCardClick = handleCardClick;
     this._handleCardDelete = handleCardDelete;
   }
@@ -13,6 +14,20 @@ export default class Card {
     const element = this._elementTemplate.cloneNode(true);
 
     return element;
+  }
+
+  _isMyCard() {
+    if (this._ownerId === this._data.owner._id) {
+      return true;
+    };
+    return false
+  }
+
+  _removeDelButtonNotMyCard(delButton) {
+    if (!this._isMyCard()) {
+      delButton.remove();
+      delButton = null;
+    }
   }
 
   // Метод установки (снятия) лайка
@@ -46,14 +61,15 @@ export default class Card {
     this._elementImage = this._element.querySelector('.element__image');
     this._elementHeading = this._element.querySelector('.element__heading');
     this._elementLikeNum = this._element.querySelector('.element__like-number');
+    this._elementDelButton = this._element.querySelector('.element__delete');
 
     this._elementImage.src = this._data.link;
     this._elementImage.alt = this._data.name;
     this._elementHeading.textContent = this._data.name;
 
     this._renderLikeNum(this._data, this._elementLikeNum); // Установить количество лайков у карточки
-
     this._setEventListeners();
+    this._removeDelButtonNotMyCard(this._elementDelButton);
 
     return this._element;
   }
