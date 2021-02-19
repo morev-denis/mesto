@@ -104,12 +104,10 @@ const popupWithFormAdd = new PopupWithForm(popupCardAdd, {
     api.addCard({ name: item.name, link: item.link })
     .then((data) => {
       console.log(data);
+      const card = createNewCard(data, elementTemplate);
+      const cardElement = card.createCard(); // Получить разметку карточки
+      cardSection.addItem(cardElement); // Вставить разметку карточки в контейнер
     });
-
-    const card = createNewCard(item, elementTemplate);
-    const cardElement = card.createCard(); // Получить разметку карточки
-
-    cardSection.addItem(cardElement); // Вставить разметку карточки в контейнер
   }
 });
 

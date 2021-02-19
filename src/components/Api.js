@@ -53,6 +53,9 @@ export default class Api {
         name: `${name}`,
         link: `${link}`
       })
+    })
+    .then((res) => {
+      return res.json();
     });
   }
 
