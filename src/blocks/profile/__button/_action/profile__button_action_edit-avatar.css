@@ -16,7 +16,6 @@
 }
 
 .profile__button_action_edit-avatar:hover {
-  cursor: pointer;
   opacity: 1;
   background-image: url('../../../../images/profile/__button/_action/profile__button_action_edit-avatar.svg');
 }
