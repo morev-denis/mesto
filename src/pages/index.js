@@ -109,6 +109,9 @@ const popupWithFormAvatar = new PopupWithForm(popupAvatarUpdate, {
     popupWithFormAvatar.renderSubmitProgress('Сохранение...');
     userInfo.setUserAvatar(data);
     api.updateAvatar({ avatar: data.avatar })
+    .then(() => {
+      popupWithFormAvatar.close();
+    })
     .catch((err) => {
       console.log(err);
     })
@@ -123,6 +126,9 @@ const popupWithFormProfile = new PopupWithForm(popupProfileEdit, {
     popupWithFormProfile.renderSubmitProgress('Сохранение...');
     userInfo.setUserInfo(data);
     api.setUserInfo({ name: data.profileName, about: data.profileJob })
+    .then(() => {
+      popupWithFormProfile.close();
+    })
     .catch((err) => {
       console.log(err);
     })
@@ -140,6 +146,7 @@ const popupWithFormAdd = new PopupWithForm(popupCardAdd, {
       const card = createNewCard(data, elementTemplate);
       const cardElement = card.createCard(); // Получить разметку карточки
       cardSection.addItem(cardElement); // Вставить разметку карточки в контейнер
+      popupWithFormAdd.close();
     })
     .catch((err) => {
       console.log(err);

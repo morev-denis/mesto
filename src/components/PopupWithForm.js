@@ -26,7 +26,6 @@ export default class PopupWithForm extends Popup {
   _submitHandler(evt) {
     evt.preventDefault(); // Отменить стандартную отправку формы
     this._submit(this._getInputValues());
-    this.close();
   }
 
   renderSubmitProgress(message) {
