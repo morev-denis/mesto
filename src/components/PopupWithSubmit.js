@@ -14,10 +14,7 @@ export default class PopupWithSubmit extends Popup {
   }
 
   setEventListeners() {
-    this._button.addEventListener('click', (evt) => {
-      this._clickEvtHandler();
-      // evt.target.closest('.element').remove();
-    });
+    this._button.addEventListener('click', this._clickEvtHandler);
     super.setEventListeners();
   }
 

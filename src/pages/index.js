@@ -40,7 +40,14 @@ const cardAddFormValidator = new FormValidator(validationConfig, popupCardAddFor
 const avatarUpdateFormValidator = new FormValidator(validationConfig, popupAvatarUpdateForm);
 const userInfo = new UserInfo(profileName, profileJob, profileAvatar);
 const popupWithImage = new PopupWithImage(popupImageFullsize);
-const api = new Api();
+
+const api = new Api({
+  serverUrl: 'https://mesto.nomoreparties.co/v1/cohort-20',
+  headers: {
+    authorization: '6d1b76d0-8a79-4ce2-87f0-35c2e1868bd2',
+    'Content-Type': 'application/json'
+  }
+});
 
 let ownerId = {};
 let evtCard = {};
@@ -48,13 +55,13 @@ let evtCard = {};
 const popupWithSubmit = new PopupWithSubmit(popupCardDelete, {
   clickButtonHandler: (data) => {
     api.deleteCard(data)
-    .then((res) => {
-      console.log(res);
+    .then(() => {
+      evtCard.target.closest('.element').remove();
+      popupWithSubmit.close();
+    })
+    .catch((err) => {
+      console.log(err);
     });
-
-    evtCard.target.closest('.element').remove();
-
-    popupWithSubmit.close();
   }
 });
 
@@ -71,6 +78,9 @@ const createNewCard = (data) => {
       api.setLike(data)
       .then((data) => {
         card.renderLikeNum(data);
+      })
+      .catch((err) => {
+        console.log(err);
       });
     },
     unsetLike: () => {
@@ -78,6 +88,9 @@ const createNewCard = (data) => {
       .then((data) => {
         card.renderLikeNum(data);
       })
+      .catch((err) => {
+        console.log(err);
+      });
     }
   });
   return card;
@@ -96,8 +109,8 @@ const popupWithFormAvatar = new PopupWithForm(popupAvatarUpdate, {
     popupWithFormAvatar.renderSubmitProgress('Сохранение...');
     userInfo.setUserAvatar(data);
     api.updateAvatar({ avatar: data.avatar })
-    .then((data) => {
-      console.log(data);
+    .catch((err) => {
+      console.log(err);
     })
     .finally(() => {
       popupWithFormAvatar.renderSubmitProgress('Сохранить');
@@ -110,8 +123,8 @@ const popupWithFormProfile = new PopupWithForm(popupProfileEdit, {
     popupWithFormProfile.renderSubmitProgress('Сохранение...');
     userInfo.setUserInfo(data);
     api.setUserInfo({ name: data.profileName, about: data.profileJob })
-    .then((data) => {
-      console.log(data);
+    .catch((err) => {
+      console.log(err);
     })
     .finally(() => {
       popupWithFormProfile.renderSubmitProgress('Сохранить');
@@ -124,10 +137,12 @@ const popupWithFormAdd = new PopupWithForm(popupCardAdd, {
     popupWithFormAdd.renderSubmitProgress('Сохранение...');
     api.addCard({ name: item.name, link: item.link })
     .then((data) => {
-      console.log(data);
       const card = createNewCard(data, elementTemplate);
       const cardElement = card.createCard(); // Получить разметку карточки
       cardSection.addItem(cardElement); // Вставить разметку карточки в контейнер
+    })
+    .catch((err) => {
+      console.log(err);
     })
     .finally(() => {
       popupWithFormAdd.renderSubmitProgress('Создать');
@@ -135,7 +150,7 @@ const popupWithFormAdd = new PopupWithForm(popupCardAdd, {
   }
 });
 
-// Функция открытия попап редактирования профиля
+// Функция открытия попапа редактирования профиля
 const openProfileEditHandler = () => {
   popupProfileEditButtonSubmit.classList.add(validationConfig.inactiveButtonClass); // Заблокировать кнопку сохранения
 
@@ -143,45 +158,45 @@ const openProfileEditHandler = () => {
   popupProfileEditFormName.value = userData.name;
   popupProfileEditFormJob.value = userData.job;
 
-  popupWithFormProfile.open();
+  popupWithFormProfile.open(); // Открыть попап редактирования профиля
 };
 
-// Функция открытия попап добавления нового места
+// Функция открытия попапа добавления нового места
 const openCardAddHandler = () => {
-  cardAddFormValidator.disableButton(popupCardAddButtonSubmit); // Заблокировать кнопку
-  popupWithFormAdd.open();
+  cardAddFormValidator.disableButton(popupCardAddButtonSubmit); // Заблокировать кнопку создания
+  popupWithFormAdd.open(); // Открыть попап добавления нового места
 };
 
+// Функция открытия попапа редактирования аватара
 const openAvatarUpdateHandler = () => {
-  cardAddFormValidator.disableButton(popupAvatarUpdateButtonSubmit); // Заблокировать кнопку
-  popupWithFormAvatar.open();
+  cardAddFormValidator.disableButton(popupAvatarUpdateButtonSubmit); // Заблокировать кнопку сохранения
+  popupWithFormAvatar.open(); // Открыть попап редактирования аватара
 };
 
-// Установить данные профиля с сервера
-api.getUserInfo()
+// Установить данные профиля и вывести карточки с сервера
+api.initData()
 .then((data) => {
-  profileName.textContent = data.name;
-  profileJob.textContent = data.about;
-  profileAvatar.src = data.avatar;
-  ownerId = data._id;
-});
+  const [initialCards, userInfo] = data;
+  profileName.textContent = userInfo.name;
+  profileJob.textContent = userInfo.about;
+  profileAvatar.src = userInfo.avatar;
+  ownerId = userInfo._id;
 
-// Вывести карточки с сервера при загрузке
-api.getInitialCards()
-.then((data) => {
-  cardSection.renderItems(data.reverse());
+  cardSection.renderItems(initialCards.reverse());
+})
+.catch((err) => {
+  console.log(err);
 });
 
 profileEditFormValidator.enableValidation(); // Включить валидацию формы редактирования профиля
 cardAddFormValidator.enableValidation(); // Включить валидацию формы добавления нового места
 avatarUpdateFormValidator.enableValidation(); // Включить валидацию формы \обновления аватара
 
-
-popupWithFormProfile.setEventListeners();
-popupWithFormAvatar.setEventListeners();
-popupWithFormAdd.setEventListeners();
-popupWithImage.setEventListeners();
-popupWithSubmit.setEventListeners();
+popupWithFormProfile.setEventListeners(); // Установить слушатели на попап редактирования профиля
+popupWithFormAvatar.setEventListeners(); // Установить слушатели на попап редактирования аватара
+popupWithFormAdd.setEventListeners(); // Установить слушатели на попап добавления нового места
+popupWithImage.setEventListeners(); // Установить слушатели на попап с полноразмерной картинкой
+popupWithSubmit.setEventListeners(); // Установить слушатели на попап подтверждения удаления
 
 profileButtonEdit.addEventListener('click', () => { // Прикрепить обработчик к кнопке редактирования профиля
   openProfileEditHandler();
