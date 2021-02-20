@@ -1,11 +1,11 @@
-.popup__heading_feat_card-delete {
+.popup__heading_feat_card-add {
   margin: 0 0 calc((100vw - 320px) / (1280 - 320) * (54 - 20) + 20px);
   font-size: calc((100vw - 320px) / (1280 - 320) * (24 - 18) + 18px);
   line-height: calc((100vw - 320px) / (1280 - 320) * (29 - 22) + 22px);
 }
 
 @media screen and (min-width: 1280px) {
-  .popup__heading_feat_card-delete {
+  .popup__heading_feat_card-add {
     margin: 0 0 54px;
     font-size: 24px;
     line-height: 29px;

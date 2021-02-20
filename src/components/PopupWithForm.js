@@ -7,6 +7,7 @@ export default class PopupWithForm extends Popup {
     this._form = this._targetPopup.querySelector(popupFormSelector);
     this._submit = submit;
     this._submitHandler = this._submitHandler.bind(this);
+    this._buttonSubmit = this._form.querySelector('.popup__button_action_submit');
   }
 
   // Метод сбора данных всех полей формы
@@ -26,6 +27,10 @@ export default class PopupWithForm extends Popup {
     evt.preventDefault(); // Отменить стандартную отправку формы
     this._submit(this._getInputValues());
     this.close();
+  }
+
+  renderSubmitProgress(message) {
+    this._buttonSubmit.textContent = message;
   }
 
   setEventListeners() {

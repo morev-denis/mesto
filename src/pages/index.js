@@ -93,32 +93,44 @@ const cardSection = new Section({
 
 const popupWithFormAvatar = new PopupWithForm(popupAvatarUpdate, {
   submit: (data) => {
+    popupWithFormAvatar.renderSubmitProgress('Сохранение...');
     userInfo.setUserAvatar(data);
     api.updateAvatar({ avatar: data.avatar })
     .then((data) => {
       console.log(data);
+    })
+    .finally(() => {
+      popupWithFormAvatar.renderSubmitProgress('Сохранить');
     });
   }
 });
 
 const popupWithFormProfile = new PopupWithForm(popupProfileEdit, {
   submit: (data) => {
+    popupWithFormProfile.renderSubmitProgress('Сохранение...');
     userInfo.setUserInfo(data);
     api.setUserInfo({ name: data.profileName, about: data.profileJob })
     .then((data) => {
       console.log(data);
+    })
+    .finally(() => {
+      popupWithFormProfile.renderSubmitProgress('Сохранить');
     });
   }
 });
 
 const popupWithFormAdd = new PopupWithForm(popupCardAdd, {
   submit: (item) => {
+    popupWithFormAdd.renderSubmitProgress('Сохранение...');
     api.addCard({ name: item.name, link: item.link })
     .then((data) => {
       console.log(data);
       const card = createNewCard(data, elementTemplate);
       const cardElement = card.createCard(); // Получить разметку карточки
       cardSection.addItem(cardElement); // Вставить разметку карточки в контейнер
+    })
+    .finally(() => {
+      popupWithFormAdd.renderSubmitProgress('Создать');
     });
   }
 });
