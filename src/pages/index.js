@@ -66,6 +66,18 @@ const createNewCard = (data) => {
     handleCardDelete: (evt) => {
       evtCard = evt;
       popupWithSubmit.open(data);
+    },
+    setLike: (data) => {
+      api.setLike(data)
+      .then((data) => {
+        card.renderLikeNum(data);
+      });
+    },
+    unsetLike: () => {
+      api.unsetLike(data)
+      .then((data) => {
+        card.renderLikeNum(data);
+      })
     }
   });
   return card;

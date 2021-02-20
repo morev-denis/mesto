@@ -42,6 +42,30 @@ export default class Api {
     });
   }
 
+  setLike(data) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-20/cards/likes/${data._id}`, {
+      method: 'PUT',
+      headers: {
+        authorization: '6d1b76d0-8a79-4ce2-87f0-35c2e1868bd2'
+      }
+    })
+    .then((res) => {
+      return res.json();
+    });
+  }
+
+  unsetLike(data) {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-20/cards/likes/${data._id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: '6d1b76d0-8a79-4ce2-87f0-35c2e1868bd2'
+      }
+    })
+    .then((res) => {
+      return res.json();
+    });
+  }
+
   addCard({ name, link }) {
     return fetch('https://mesto.nomoreparties.co/v1/cohort-20/cards', {
       method: 'POST',
