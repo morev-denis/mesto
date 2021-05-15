@@ -15,9 +15,9 @@
   right: 0;
   background-color: #000;
   opacity: 0;
-  transition: opacity .3s ease;
+  transition: opacity 0.3s ease;
 }
 
 .profile__avatar:hover::before {
-  opacity: .8;
+  opacity: 0.8;
 }

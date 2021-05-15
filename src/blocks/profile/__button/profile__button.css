@@ -1,12 +1,12 @@
 .profile__button {
   box-sizing: border-box;
-  transition: opacity ease .3s;
+  transition: opacity ease 0.3s;
   background-color: #000;
 }
 
 .profile__button:hover {
   cursor: pointer;
-  opacity: .6;
+  opacity: 0.6;
 }
 
 .profile__button:active {

@@ -1,5 +1,10 @@
 export default class Card {
-  constructor(data, elementTemplate, ownerId, { handleCardClick, handleCardDelete, setLike, unsetLike }) {
+  constructor(
+    data,
+    elementTemplate,
+    ownerId,
+    { handleCardClick, handleCardDelete, setLike, unsetLike },
+  ) {
     this._data = data;
     this._link = data.link;
     this._name = data.name;
@@ -22,8 +27,8 @@ export default class Card {
   _isMyCard() {
     if (this._ownerId === this._data.owner._id) {
       return true;
-    };
-    return false
+    }
+    return false;
   }
 
   // Метод удаления кнопки удаления с чужих карточек
@@ -68,13 +73,17 @@ export default class Card {
 
   // Метод установки слушателей на кнопки лайка, корзины, крестика
   _setEventListeners() {
-    this._element.querySelector('.element__like').addEventListener('click', (evt) => { // Прикрепить обработчик к кнопке лайка
+    this._element.querySelector('.element__like').addEventListener('click', (evt) => {
+      // Прикрепить обработчик к кнопке лайка
       this._toggleLikeHandler(evt);
     });
 
-    this._element.querySelector('.element__delete').addEventListener('click', this._handleCardDelete); // Прикрепить обработчик к кнопке корзины
+    this._element
+      .querySelector('.element__delete')
+      .addEventListener('click', this._handleCardDelete); // Прикрепить обработчик к кнопке корзины
 
-    this._elementImage.addEventListener('click', () => { // Прикрепить обработчик к картинке карточки
+    this._elementImage.addEventListener('click', () => {
+      // Прикрепить обработчик к картинке карточки
       this._handleCardClick(this._elementImage.src, this._elementImage.alt);
     });
   }

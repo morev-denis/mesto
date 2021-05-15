@@ -30,7 +30,7 @@ export default class Popup {
   // Метод открытия попапа
   open() {
     this._targetPopup.classList.add('popup_opened');
-    root.addEventListener('keydown', this._handleEscClose);  // Прикрепить обработчик на нажатие Esc
+    root.addEventListener('keydown', this._handleEscClose); // Прикрепить обработчик на нажатие Esc
   }
 
   // Метод закрытия попапа
@@ -41,11 +41,13 @@ export default class Popup {
 
   // Метод добавления слушателей на клик по оверлею, крестику
   setEventListeners() {
-    this._targetPopup.addEventListener('click', (evt) => { // Прикрепить обработчик клика по оверлею
+    this._targetPopup.addEventListener('click', (evt) => {
+      // Прикрепить обработчик клика по оверлею
       this._handleOverlayClose(evt);
     });
 
-    this._targetPopup.querySelector(popupButtonCloseSelector).addEventListener('click', () => { // Прикрепить обработчик к кнопке закрытия попапа
+    this._targetPopup.querySelector(popupButtonCloseSelector).addEventListener('click', () => {
+      // Прикрепить обработчик к кнопке закрытия попапа
       this._handleButtonClose();
     });
   }

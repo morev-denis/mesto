@@ -9,8 +9,8 @@ export default class UserInfo {
   getUserInfo() {
     const userInfo = {
       name: this._profileName.textContent,
-      job: this._profileJob.textContent
-    }
+      job: this._profileJob.textContent,
+    };
 
     return userInfo;
   }

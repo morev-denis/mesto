@@ -11,7 +11,7 @@ export default class FormValidator {
     inputElement.classList.add(this._validationConfig.inputErrorClass);
     errorElement.classList.add(this._validationConfig.errorClass);
     errorElement.textContent = errorMessage;
-  };
+  }
 
   // Метод скрытия ошибки валидации
   _hideInputError(formElement, inputElement) {
@@ -20,7 +20,7 @@ export default class FormValidator {
     inputElement.classList.remove(this._validationConfig.inputErrorClass);
     errorElement.classList.remove(this._validationConfig.errorClass);
     errorElement.textContent = '';
-  };
+  }
 
   // Метод валидации поля
   _isValid(formElement, inputElement) {
@@ -29,16 +29,19 @@ export default class FormValidator {
     } else {
       this._hideInputError(formElement, inputElement);
     }
-  };
+  }
 
   // Метод установки слушателей на все поля формы
   _setEventListeners(formElement) {
-    const inputList = Array.from(formElement.querySelectorAll(this._validationConfig.inputSelector));
+    const inputList = Array.from(
+      formElement.querySelectorAll(this._validationConfig.inputSelector),
+    );
     const buttonElement = formElement.querySelector(this._validationConfig.submitButtonSelector);
 
     buttonElement.disabled = true; // заблокировать кнопку отправить
 
-    formElement.addEventListener('reset', () => { // Установить слушатель на сброс формы, сбросить ошибки валидации, заблокировать кнопку
+    formElement.addEventListener('reset', () => {
+      // Установить слушатель на сброс формы, сбросить ошибки валидации, заблокировать кнопку
       inputList.forEach((inputElement) => {
         this._hideInputError(formElement, inputElement);
         buttonElement.classList.add(this._validationConfig.inactiveButtonClass);
@@ -51,14 +54,14 @@ export default class FormValidator {
         this._toggleButtonState(inputList, buttonElement);
       });
     });
-  };
+  }
 
   // Метод проверки валидности всех полей формы
   _hasInvalidInput(inputList) {
     return inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
-  };
+  }
 
   // Метод блокировки кнопки
   disableButton(buttonElement) {
@@ -74,7 +77,7 @@ export default class FormValidator {
       buttonElement.classList.remove(this._validationConfig.inactiveButtonClass);
       buttonElement.disabled = false;
     }
-  };
+  }
 
   enableValidation() {
     this._targetForm.addEventListener('submit', (evt) => {
